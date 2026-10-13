@@ -37,6 +37,8 @@ React + TypeScript + Vite · FastAPI · PyMuPDF · PDF.js · Docker Compose.
 ## Run with Docker
 
 ```sh
+git clone https://github.com/juangrukat/briss-studio.git
+cd briss-studio
 cp .env.example .env
 docker compose up --build -d
 ```
