@@ -1,7 +1,38 @@
 # BRISS Studio
 
-A self-hosted browser rebuild of BRISS 0.9. React + TypeScript editor, Python/FastAPI
-API, PyMuPDF crop engine and PDF.js preview. No Java runtime is needed.
+**Make room for what matters.** A self-hosted PDF cropping studio inspired by
+BRISS 0.9, rebuilt for the browser with a modern React interface and a Python PDF
+engine. Trim margins, split columns, inspect page overlays, and export crisp,
+selectable PDFs. Run it on your own server with Docker; no Java runtime is needed.
+
+![BRISS Studio crop workspace](docs/screenshots/briss-studio.jpg)
+
+## Features
+
+- **Smart page overlays:** group by size and odd/even pages, or edit each page
+  individually. Isolate covers and unusual layouts without removing them.
+- **Automatic margin detection:** find content edges with adjustable padding.
+- **Multiple crop regions:** split a page into columns or snippets; choose their
+  output order with direct controls.
+- **Precise editing:** draw, move, resize, copy/paste and match region sizes.
+  Edit dimensions in points, millimeters or inches, with undo/redo and shortcuts.
+- **Preview before export:** an integrated PDF.js viewer shows the actual result.
+- **Keep PDF quality:** vector content and selectable text, metadata, bookmarks,
+  named destinations and applicable links survive cropping.
+- **Reusable crop recipes:** save and restore layouts for the same source PDF.
+- **Private server workspace:** password-protected PDF support, optional access
+  token, session expiry and a non-root Docker container.
+- **Batch-friendly CLI:** automatic cropping without opening the browser.
+
+## Welcome screen
+
+Upload a PDF, drop one onto the workspace, or explore the included sample.
+
+![BRISS Studio upload and welcome screen](docs/screenshots/welcome.jpg)
+
+## Technology
+
+React + TypeScript + Vite · FastAPI · PyMuPDF · PDF.js · Docker Compose.
 
 ## Run with Docker
 
