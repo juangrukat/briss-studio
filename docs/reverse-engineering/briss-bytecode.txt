@@ -1,0 +1,3639 @@
+Compiled from "ClusterDefinition.java"
+public class at.laborg.briss.model.ClusterDefinition {
+  private final java.util.List<at.laborg.briss.model.PageCluster> clusters;
+
+  public at.laborg.briss.model.ClusterDefinition();
+    Code:
+       0: aload_0
+       1: invokespecial #12                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #14                 // class java/util/ArrayList
+       8: dup
+       9: invokespecial #16                 // Method java/util/ArrayList."<init>":()V
+      12: putfield      #17                 // Field clusters:Ljava/util/List;
+      15: return
+
+  public final at.laborg.briss.model.PageCluster getSingleCluster(int);
+    Code:
+       0: aload_0
+       1: getfield      #17                 // Field clusters:Ljava/util/List;
+       4: invokeinterface #25,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       9: astore_3
+      10: goto          41
+      13: aload_3
+      14: invokeinterface #31,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      19: checkcast     #37                 // class at/laborg/briss/model/PageCluster
+      22: astore_2
+      23: aload_2
+      24: invokevirtual #39                 // Method at/laborg/briss/model/PageCluster.getAllPages:()Ljava/util/List;
+      27: iload_1
+      28: invokestatic  #43                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      31: invokeinterface #49,  2           // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
+      36: ifeq          41
+      39: aload_2
+      40: areturn
+      41: aload_3
+      42: invokeinterface #53,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      47: ifne          13
+      50: aconst_null
+      51: areturn
+
+  public final java.util.List<at.laborg.briss.model.PageCluster> getClusterList();
+    Code:
+       0: aload_0
+       1: getfield      #17                 // Field clusters:Ljava/util/List;
+       4: areturn
+
+  public final void addOrMergeCluster(at.laborg.briss.model.PageCluster);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #65                 // Method findNearlyEqualCluster:(Lat/laborg/briss/model/PageCluster;)Lat/laborg/briss/model/PageCluster;
+       5: astore_2
+       6: aload_2
+       7: ifnull        18
+      10: aload_2
+      11: aload_1
+      12: invokevirtual #69                 // Method at/laborg/briss/model/PageCluster.mergeClusters:(Lat/laborg/briss/model/PageCluster;)V
+      15: goto          29
+      18: aload_0
+      19: getfield      #17                 // Field clusters:Ljava/util/List;
+      22: aload_1
+      23: invokeinterface #72,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      28: pop
+      29: return
+
+  private at.laborg.briss.model.PageCluster findNearlyEqualCluster(at.laborg.briss.model.PageCluster);
+    Code:
+       0: aload_0
+       1: getfield      #17                 // Field clusters:Ljava/util/List;
+       4: invokeinterface #25,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       9: astore_3
+      10: goto          33
+      13: aload_3
+      14: invokeinterface #31,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      19: checkcast     #37                 // class at/laborg/briss/model/PageCluster
+      22: astore_2
+      23: aload_2
+      24: aload_1
+      25: invokevirtual #77                 // Method at/laborg/briss/model/PageCluster.isClusterNearlyEqual:(Lat/laborg/briss/model/PageCluster;)Z
+      28: ifeq          33
+      31: aload_2
+      32: areturn
+      33: aload_3
+      34: invokeinterface #53,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      39: ifne          13
+      42: aconst_null
+      43: areturn
+
+  public final void selectAndSetPagesForMerging();
+    Code:
+       0: aload_0
+       1: getfield      #17                 // Field clusters:Ljava/util/List;
+       4: invokeinterface #25,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       9: astore_2
+      10: goto          27
+      13: aload_2
+      14: invokeinterface #31,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      19: checkcast     #37                 // class at/laborg/briss/model/PageCluster
+      22: astore_1
+      23: aload_1
+      24: invokevirtual #83                 // Method at/laborg/briss/model/PageCluster.choosePagesToMerge:()V
+      27: aload_2
+      28: invokeinterface #53,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      33: ifne          13
+      36: return
+
+  public final int getNrOfPagesToRender();
+    Code:
+       0: iconst_0
+       1: istore_1
+       2: aload_0
+       3: getfield      #17                 // Field clusters:Ljava/util/List;
+       6: invokeinterface #25,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      11: astore_3
+      12: goto          37
+      15: aload_3
+      16: invokeinterface #31,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      21: checkcast     #37                 // class at/laborg/briss/model/PageCluster
+      24: astore_2
+      25: iload_1
+      26: aload_2
+      27: invokevirtual #88                 // Method at/laborg/briss/model/PageCluster.getPagesToMerge:()Ljava/util/List;
+      30: invokeinterface #91,  1           // InterfaceMethod java/util/List.size:()I
+      35: iadd
+      36: istore_1
+      37: aload_3
+      38: invokeinterface #53,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      43: ifne          15
+      46: iload_1
+      47: ireturn
+}
+Compiled from "PageCluster.java"
+public class at.laborg.briss.model.PageCluster implements java.lang.Comparable<at.laborg.briss.model.PageCluster> {
+  private static final int MERGE_VARIABILITY;
+
+  private static final int MAX_MERGE_PAGES;
+
+  private java.util.List<java.lang.Integer> pagesToMerge;
+
+  private final java.util.List<java.lang.Integer> allPages;
+
+  private final java.util.List<java.lang.Float[]> cropRatiosList;
+
+  private boolean excluded;
+
+  private at.laborg.briss.model.ClusterImageData imageData;
+
+  private final boolean evenPage;
+
+  private final int pageWidth;
+
+  private final int pageHeight;
+
+  public at.laborg.briss.model.PageCluster(boolean, int, int, boolean, int);
+    Code:
+       0: aload_0
+       1: invokespecial #30                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #33                 // class java/util/ArrayList
+       8: dup
+       9: invokespecial #35                 // Method java/util/ArrayList."<init>":()V
+      12: putfield      #36                 // Field cropRatiosList:Ljava/util/List;
+      15: aload_0
+      16: iconst_0
+      17: putfield      #38                 // Field excluded:Z
+      20: aload_0
+      21: iload_2
+      22: putfield      #40                 // Field pageWidth:I
+      25: aload_0
+      26: iload_3
+      27: putfield      #42                 // Field pageHeight:I
+      30: aload_0
+      31: iload_1
+      32: putfield      #44                 // Field evenPage:Z
+      35: aload_0
+      36: iload         4
+      38: putfield      #38                 // Field excluded:Z
+      41: aload_0
+      42: new           #33                 // class java/util/ArrayList
+      45: dup
+      46: invokespecial #35                 // Method java/util/ArrayList."<init>":()V
+      49: putfield      #46                 // Field pagesToMerge:Ljava/util/List;
+      52: aload_0
+      53: new           #33                 // class java/util/ArrayList
+      56: dup
+      57: invokespecial #35                 // Method java/util/ArrayList."<init>":()V
+      60: putfield      #48                 // Field allPages:Ljava/util/List;
+      63: aload_0
+      64: getfield      #48                 // Field allPages:Ljava/util/List;
+      67: iload         5
+      69: invokestatic  #50                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      72: invokeinterface #56,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      77: pop
+      78: return
+
+  public final at.laborg.briss.model.ClusterImageData getImageData();
+    Code:
+       0: aload_0
+       1: getfield      #70                 // Field imageData:Lat/laborg/briss/model/ClusterImageData;
+       4: ifnonnull     35
+       7: aload_0
+       8: new           #72                 // class at/laborg/briss/model/ClusterImageData
+      11: dup
+      12: aload_0
+      13: getfield      #40                 // Field pageWidth:I
+      16: aload_0
+      17: getfield      #42                 // Field pageHeight:I
+      20: aload_0
+      21: getfield      #46                 // Field pagesToMerge:Ljava/util/List;
+      24: invokeinterface #74,  1           // InterfaceMethod java/util/List.size:()I
+      29: invokespecial #78                 // Method at/laborg/briss/model/ClusterImageData."<init>":(III)V
+      32: putfield      #70                 // Field imageData:Lat/laborg/briss/model/ClusterImageData;
+      35: aload_0
+      36: getfield      #70                 // Field imageData:Lat/laborg/briss/model/ClusterImageData;
+      39: areturn
+
+  public final java.util.List<java.lang.Float[]> getRatiosList();
+    Code:
+       0: aload_0
+       1: getfield      #36                 // Field cropRatiosList:Ljava/util/List;
+       4: areturn
+
+  public final void clearRatios();
+    Code:
+       0: aload_0
+       1: getfield      #36                 // Field cropRatiosList:Ljava/util/List;
+       4: invokeinterface #85,  1           // InterfaceMethod java/util/List.clear:()V
+       9: return
+
+  public final void addRatios(java.lang.Float[]);
+    Code:
+       0: aload_0
+       1: getfield      #36                 // Field cropRatiosList:Ljava/util/List;
+       4: aload_1
+       5: invokeinterface #90,  2           // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
+      10: ifne          24
+      13: aload_0
+      14: getfield      #36                 // Field cropRatiosList:Ljava/util/List;
+      17: aload_1
+      18: invokeinterface #56,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      23: pop
+      24: return
+
+  public final boolean isClusterNearlyEqual(at.laborg.briss.model.PageCluster);
+    Code:
+       0: aload_0
+       1: getfield      #44                 // Field evenPage:Z
+       4: aload_1
+       5: getfield      #44                 // Field evenPage:Z
+       8: if_icmpeq     13
+      11: iconst_0
+      12: ireturn
+      13: aload_0
+      14: getfield      #38                 // Field excluded:Z
+      17: ifne          27
+      20: aload_1
+      21: getfield      #38                 // Field excluded:Z
+      24: ifeq          29
+      27: iconst_0
+      28: ireturn
+      29: aload_0
+      30: invokevirtual #97                 // Method getRoundedPageHeight:()I
+      33: aload_1
+      34: invokevirtual #97                 // Method getRoundedPageHeight:()I
+      37: if_icmpeq     42
+      40: iconst_0
+      41: ireturn
+      42: aload_0
+      43: invokevirtual #100                // Method getRoundedPageWidth:()I
+      46: aload_1
+      47: invokevirtual #100                // Method getRoundedPageWidth:()I
+      50: if_icmpeq     55
+      53: iconst_0
+      54: ireturn
+      55: iconst_1
+      56: ireturn
+
+  public final void mergeClusters(at.laborg.briss.model.PageCluster);
+    Code:
+       0: aload_0
+       1: getfield      #48                 // Field allPages:Ljava/util/List;
+       4: aload_1
+       5: invokevirtual #106                // Method getAllPages:()Ljava/util/List;
+       8: invokeinterface #109,  2          // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+      13: pop
+      14: return
+
+  public final boolean isEvenPage();
+    Code:
+       0: aload_0
+       1: getfield      #44                 // Field evenPage:Z
+       4: ireturn
+
+  public final int getRoundedPageHeight();
+    Code:
+       0: aload_0
+       1: getfield      #42                 // Field pageHeight:I
+       4: bipush        20
+       6: idiv
+       7: istore_1
+       8: iload_1
+       9: bipush        20
+      11: imul
+      12: ireturn
+
+  public final int getRoundedPageWidth();
+    Code:
+       0: aload_0
+       1: getfield      #40                 // Field pageWidth:I
+       4: bipush        20
+       6: idiv
+       7: istore_1
+       8: iload_1
+       9: bipush        20
+      11: imul
+      12: ireturn
+
+  public final void choosePagesToMerge();
+    Code:
+       0: aload_0
+       1: getfield      #48                 // Field allPages:Ljava/util/List;
+       4: invokeinterface #74,  1           // InterfaceMethod java/util/List.size:()I
+       9: bipush        15
+      11: if_icmpge     25
+      14: aload_0
+      15: aload_0
+      16: getfield      #48                 // Field allPages:Ljava/util/List;
+      19: putfield      #46                 // Field pagesToMerge:Ljava/util/List;
+      22: goto          96
+      25: aload_0
+      26: getfield      #48                 // Field allPages:Ljava/util/List;
+      29: invokeinterface #74,  1           // InterfaceMethod java/util/List.size:()I
+      34: i2f
+      35: ldc           #116                // float 15.0f
+      37: fdiv
+      38: fstore_1
+      39: fconst_0
+      40: fstore_2
+      41: iconst_0
+      42: istore_3
+      43: goto          90
+      46: aload_0
+      47: getfield      #46                 // Field pagesToMerge:Ljava/util/List;
+      50: aload_0
+      51: getfield      #48                 // Field allPages:Ljava/util/List;
+      54: new           #117                // class java/lang/Double
+      57: dup
+      58: fload_2
+      59: f2d
+      60: invokestatic  #119                // Method java/lang/Math.floor:(D)D
+      63: invokespecial #125                // Method java/lang/Double."<init>":(D)V
+      66: invokevirtual #128                // Method java/lang/Double.intValue:()I
+      69: invokeinterface #131,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      74: checkcast     #51                 // class java/lang/Integer
+      77: invokeinterface #56,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      82: pop
+      83: fload_2
+      84: fload_1
+      85: fadd
+      86: fstore_2
+      87: iinc          3, 1
+      90: iload_3
+      91: bipush        15
+      93: if_icmplt     46
+      96: return
+
+  public final java.util.List<java.lang.Integer> getAllPages();
+    Code:
+       0: aload_0
+       1: getfield      #48                 // Field allPages:Ljava/util/List;
+       4: areturn
+
+  public final java.util.List<java.lang.Integer> getPagesToMerge();
+    Code:
+       0: aload_0
+       1: getfield      #46                 // Field pagesToMerge:Ljava/util/List;
+       4: areturn
+
+  public final int compareTo(at.laborg.briss.model.PageCluster);
+    Code:
+       0: aload_0
+       1: invokespecial #143                // Method getFirstPage:()I
+       4: aload_1
+       5: invokespecial #143                // Method getFirstPage:()I
+       8: isub
+       9: ireturn
+
+  private int getFirstPage();
+    Code:
+       0: ldc           #147                // int 2147483647
+       2: istore_1
+       3: aload_0
+       4: getfield      #48                 // Field allPages:Ljava/util/List;
+       7: invokeinterface #148,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      12: astore_3
+      13: goto          39
+      16: aload_3
+      17: invokeinterface #152,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      22: checkcast     #51                 // class java/lang/Integer
+      25: astore_2
+      26: aload_2
+      27: invokevirtual #158                // Method java/lang/Integer.intValue:()I
+      30: iload_1
+      31: if_icmpge     39
+      34: aload_2
+      35: invokevirtual #158                // Method java/lang/Integer.intValue:()I
+      38: istore_1
+      39: aload_3
+      40: invokeinterface #159,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      45: ifne          16
+      48: iload_1
+      49: ireturn
+
+  public int compareTo(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #1                  // class at/laborg/briss/model/PageCluster
+       5: invokevirtual #165                // Method compareTo:(Lat/laborg/briss/model/PageCluster;)I
+       8: ireturn
+}
+Compiled from "CropFinder.java"
+public final class at.laborg.briss.model.CropFinder {
+  private static final double RATIO_LOOK_AHEAD_SATISFY;
+
+  private static final int LOOK_AHEAD_PIXEL_NR;
+
+  private static final int SD_CALC_SIZE_NR;
+
+  private static final float SD_THRESHOLD_TO_BE_COUNTED;
+
+  public static final int X_AXIS;
+
+  public static final int Y_AXIS;
+
+  public static final int ORIENTATION_LEFT;
+
+  public static final int ORIENTATION_TOP;
+
+  public static final int ORIENTATION_RIGHT;
+
+  public static final int ORIENTATION_BOTTOM;
+
+  private at.laborg.briss.model.CropFinder();
+    Code:
+       0: aload_0
+       1: invokespecial #31                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static java.lang.Float[] getAutoCropFloats(java.awt.image.BufferedImage);
+    Code:
+       0: aload_0
+       1: invokevirtual #39                 // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+       4: astore_1
+       5: aload_1
+       6: iconst_0
+       7: invokestatic  #45                 // Method sumFrom2dTo1d:(Ljava/awt/image/WritableRaster;I)[D
+      10: astore_2
+      11: aload_1
+      12: iconst_1
+      13: invokestatic  #45                 // Method sumFrom2dTo1d:(Ljava/awt/image/WritableRaster;I)[D
+      16: astore_3
+      17: aload_2
+      18: invokestatic  #49                 // Method createDerivation:([D)[D
+      21: astore        4
+      23: aload_3
+      24: invokestatic  #49                 // Method createDerivation:([D)[D
+      27: astore        5
+      29: aload         4
+      31: invokestatic  #53                 // Method createSdOfDerivation:([D)[D
+      34: astore        6
+      36: aload         5
+      38: invokestatic  #53                 // Method createSdOfDerivation:([D)[D
+      41: astore        7
+      43: aload         6
+      45: iconst_0
+      46: invokestatic  #56                 // Method findPosition:([DI)I
+      49: istore        8
+      51: aload         7
+      53: iconst_1
+      54: invokestatic  #56                 // Method findPosition:([DI)I
+      57: istore        9
+      59: aload         6
+      61: iconst_2
+      62: invokestatic  #56                 // Method findPosition:([DI)I
+      65: istore        10
+      67: aload         7
+      69: iconst_3
+      70: invokestatic  #56                 // Method findPosition:([DI)I
+      73: istore        11
+      75: iconst_4
+      76: anewarray     #60                 // class java/lang/Float
+      79: astore        12
+      81: aload         12
+      83: iconst_0
+      84: iload         8
+      86: i2f
+      87: aload_0
+      88: invokevirtual #62                 // Method java/awt/image/BufferedImage.getWidth:()I
+      91: i2f
+      92: fdiv
+      93: invokestatic  #66                 // Method java/lang/Float.valueOf:(F)Ljava/lang/Float;
+      96: aastore
+      97: aload         12
+      99: iconst_1
+     100: aload_0
+     101: invokevirtual #70                 // Method java/awt/image/BufferedImage.getHeight:()I
+     104: iload         11
+     106: isub
+     107: i2f
+     108: aload_0
+     109: invokevirtual #70                 // Method java/awt/image/BufferedImage.getHeight:()I
+     112: i2f
+     113: fdiv
+     114: invokestatic  #66                 // Method java/lang/Float.valueOf:(F)Ljava/lang/Float;
+     117: aastore
+     118: aload         12
+     120: iconst_2
+     121: aload_0
+     122: invokevirtual #62                 // Method java/awt/image/BufferedImage.getWidth:()I
+     125: iload         10
+     127: isub
+     128: i2f
+     129: aload_0
+     130: invokevirtual #62                 // Method java/awt/image/BufferedImage.getWidth:()I
+     133: i2f
+     134: fdiv
+     135: invokestatic  #66                 // Method java/lang/Float.valueOf:(F)Ljava/lang/Float;
+     138: aastore
+     139: aload         12
+     141: iconst_3
+     142: iload         9
+     144: i2f
+     145: aload_0
+     146: invokevirtual #70                 // Method java/awt/image/BufferedImage.getHeight:()I
+     149: i2f
+     150: fdiv
+     151: invokestatic  #66                 // Method java/lang/Float.valueOf:(F)Ljava/lang/Float;
+     154: aastore
+     155: aload         12
+     157: areturn
+
+  private static double[] sumFrom2dTo1d(java.awt.image.WritableRaster, int);
+    Code:
+       0: iload_1
+       1: ifne          101
+       4: aload_0
+       5: invokevirtual #90                 // Method java/awt/image/WritableRaster.getWidth:()I
+       8: newarray       double
+      10: astore_2
+      11: iconst_0
+      12: istore_3
+      13: goto          91
+      16: aconst_null
+      17: checkcast     #93                 // class "[I"
+      20: astore        4
+      22: aload_0
+      23: iload_3
+      24: iconst_0
+      25: iconst_1
+      26: aload_0
+      27: invokevirtual #95                 // Method java/awt/image/WritableRaster.getHeight:()I
+      30: aload         4
+      32: invokevirtual #96                 // Method java/awt/image/WritableRaster.getPixels:(IIII[I)[I
+      35: astore        4
+      37: aload         4
+      39: dup
+      40: astore        8
+      42: arraylength
+      43: istore        7
+      45: iconst_0
+      46: istore        6
+      48: goto          70
+      51: aload         8
+      53: iload         6
+      55: iaload
+      56: istore        5
+      58: aload_2
+      59: iload_3
+      60: dup2
+      61: daload
+      62: iload         5
+      64: i2d
+      65: dadd
+      66: dastore
+      67: iinc          6, 1
+      70: iload         6
+      72: iload         7
+      74: if_icmplt     51
+      77: aload_2
+      78: iload_3
+      79: dup2
+      80: daload
+      81: aload_0
+      82: invokevirtual #95                 // Method java/awt/image/WritableRaster.getHeight:()I
+      85: i2d
+      86: ddiv
+      87: dastore
+      88: iinc          3, 1
+      91: iload_3
+      92: aload_0
+      93: invokevirtual #90                 // Method java/awt/image/WritableRaster.getWidth:()I
+      96: if_icmplt     16
+      99: aload_2
+     100: areturn
+     101: iload_1
+     102: iconst_1
+     103: if_icmpne     203
+     106: aload_0
+     107: invokevirtual #95                 // Method java/awt/image/WritableRaster.getHeight:()I
+     110: newarray       double
+     112: astore_2
+     113: iconst_0
+     114: istore_3
+     115: goto          193
+     118: aconst_null
+     119: checkcast     #93                 // class "[I"
+     122: astore        4
+     124: aload_0
+     125: iconst_0
+     126: iload_3
+     127: aload_0
+     128: invokevirtual #90                 // Method java/awt/image/WritableRaster.getWidth:()I
+     131: iconst_1
+     132: aload         4
+     134: invokevirtual #96                 // Method java/awt/image/WritableRaster.getPixels:(IIII[I)[I
+     137: astore        4
+     139: aload         4
+     141: dup
+     142: astore        8
+     144: arraylength
+     145: istore        7
+     147: iconst_0
+     148: istore        6
+     150: goto          172
+     153: aload         8
+     155: iload         6
+     157: iaload
+     158: istore        5
+     160: aload_2
+     161: iload_3
+     162: dup2
+     163: daload
+     164: iload         5
+     166: i2d
+     167: dadd
+     168: dastore
+     169: iinc          6, 1
+     172: iload         6
+     174: iload         7
+     176: if_icmplt     153
+     179: aload_2
+     180: iload_3
+     181: dup2
+     182: daload
+     183: aload_0
+     184: invokevirtual #90                 // Method java/awt/image/WritableRaster.getWidth:()I
+     187: i2d
+     188: ddiv
+     189: dastore
+     190: iinc          3, 1
+     193: iload_3
+     194: aload_0
+     195: invokevirtual #95                 // Method java/awt/image/WritableRaster.getHeight:()I
+     198: if_icmplt     118
+     201: aload_2
+     202: areturn
+     203: aconst_null
+     204: areturn
+
+  private static double[] createDerivation(double[]);
+    Code:
+       0: aload_0
+       1: arraylength
+       2: iconst_1
+       3: isub
+       4: newarray       double
+       6: astore_1
+       7: iconst_0
+       8: istore_2
+       9: goto          27
+      12: aload_1
+      13: iload_2
+      14: aload_0
+      15: iload_2
+      16: iconst_1
+      17: iadd
+      18: daload
+      19: aload_0
+      20: iload_2
+      21: daload
+      22: dsub
+      23: dastore
+      24: iinc          2, 1
+      27: iload_2
+      28: aload_1
+      29: arraylength
+      30: if_icmplt     12
+      33: aload_1
+      34: areturn
+
+  private static int findPosition(double[], int);
+    Code:
+       0: iconst_0
+       1: istore_2
+       2: iload_1
+       3: tableswitch   { // 0 to 3
+                     0: 78
+                     1: 32
+                     2: 170
+                     3: 124
+               default: 216
+          }
+      32: iconst_0
+      33: istore_3
+      34: goto          66
+      37: aload_0
+      38: iload_3
+      39: iload_3
+      40: bipush        30
+      42: iadd
+      43: invokestatic  #106                // Method diffCounter:([DII)I
+      46: istore        4
+      48: iload         4
+      50: i2d
+      51: ldc2_w        #110                // double 25.5d
+      54: dcmpl
+      55: ifle          63
+      58: iload_3
+      59: istore_2
+      60: goto          216
+      63: iinc          3, 1
+      66: iload_3
+      67: aload_0
+      68: arraylength
+      69: bipush        30
+      71: isub
+      72: if_icmplt     37
+      75: goto          216
+      78: iconst_0
+      79: istore_3
+      80: goto          112
+      83: aload_0
+      84: iload_3
+      85: iload_3
+      86: bipush        30
+      88: iadd
+      89: invokestatic  #106                // Method diffCounter:([DII)I
+      92: istore        4
+      94: iload         4
+      96: i2d
+      97: ldc2_w        #110                // double 25.5d
+     100: dcmpl
+     101: ifle          109
+     104: iload_3
+     105: istore_2
+     106: goto          216
+     109: iinc          3, 1
+     112: iload_3
+     113: aload_0
+     114: arraylength
+     115: bipush        30
+     117: isub
+     118: if_icmplt     83
+     121: goto          216
+     124: aload_0
+     125: arraylength
+     126: iconst_1
+     127: isub
+     128: istore_3
+     129: goto          161
+     132: aload_0
+     133: iload_3
+     134: bipush        30
+     136: isub
+     137: iload_3
+     138: invokestatic  #106                // Method diffCounter:([DII)I
+     141: istore        4
+     143: iload         4
+     145: i2d
+     146: ldc2_w        #110                // double 25.5d
+     149: dcmpl
+     150: ifle          158
+     153: iload_3
+     154: istore_2
+     155: goto          216
+     158: iinc          3, -1
+     161: iload_3
+     162: bipush        30
+     164: if_icmpge     132
+     167: goto          216
+     170: aload_0
+     171: arraylength
+     172: iconst_1
+     173: isub
+     174: istore_3
+     175: goto          207
+     178: aload_0
+     179: iload_3
+     180: bipush        30
+     182: isub
+     183: iload_3
+     184: invokestatic  #106                // Method diffCounter:([DII)I
+     187: istore        4
+     189: iload         4
+     191: i2d
+     192: ldc2_w        #110                // double 25.5d
+     195: dcmpl
+     196: ifle          204
+     199: iload_3
+     200: istore_2
+     201: goto          216
+     204: iinc          3, -1
+     207: iload_3
+     208: bipush        30
+     210: if_icmpge     178
+     213: goto          216
+     216: iload_2
+     217: ireturn
+
+  private static double[] createSdOfDerivation(double[]);
+    Code:
+       0: aload_0
+       1: arraylength
+       2: newarray       double
+       4: astore_1
+       5: iconst_0
+       6: istore_2
+       7: goto          67
+      10: iconst_5
+      11: newarray       double
+      13: astore_3
+      14: iconst_0
+      15: istore        4
+      17: goto          50
+      20: iload_2
+      21: iload         4
+      23: iadd
+      24: aload_0
+      25: arraylength
+      26: if_icmpge     42
+      29: aload_3
+      30: iload         4
+      32: aload_0
+      33: iload_2
+      34: iload         4
+      36: iadd
+      37: daload
+      38: dastore
+      39: goto          47
+      42: aload_3
+      43: iload         4
+      45: dconst_0
+      46: dastore
+      47: iinc          4, 1
+      50: iload         4
+      52: aload_3
+      53: arraylength
+      54: if_icmplt     20
+      57: aload_1
+      58: iload_2
+      59: aload_3
+      60: invokestatic  #116                // Method sd:([D)D
+      63: dastore
+      64: iinc          2, 1
+      67: iload_2
+      68: aload_0
+      69: arraylength
+      70: if_icmplt     10
+      73: aload_1
+      74: areturn
+
+  private static int diffCounter(double[], int, int);
+    Code:
+       0: iconst_0
+       1: istore_3
+       2: iload_1
+       3: istore        4
+       5: goto          25
+       8: aload_0
+       9: iload         4
+      11: daload
+      12: ldc2_w        #122                // double 0.20000000298023224d
+      15: dcmpl
+      16: ifle          22
+      19: iinc          3, 1
+      22: iinc          4, 1
+      25: iload         4
+      27: iload_2
+      28: if_icmplt     8
+      31: iload_3
+      32: ireturn
+
+  private static double sd(double[]);
+    Code:
+       0: dconst_0
+       1: dstore_1
+       2: dconst_0
+       3: dstore_3
+       4: aload_0
+       5: dup
+       6: astore        9
+       8: arraylength
+       9: istore        8
+      11: iconst_0
+      12: istore        7
+      14: goto          32
+      17: aload         9
+      19: iload         7
+      21: daload
+      22: dstore        5
+      24: dload_3
+      25: dload         5
+      27: dadd
+      28: dstore_3
+      29: iinc          7, 1
+      32: iload         7
+      34: iload         8
+      36: if_icmplt     17
+      39: dload_3
+      40: aload_0
+      41: arraylength
+      42: i2d
+      43: ddiv
+      44: dstore_1
+      45: dconst_0
+      46: dstore        5
+      48: aload_0
+      49: dup
+      50: astore        11
+      52: arraylength
+      53: istore        10
+      55: iconst_0
+      56: istore        9
+      58: goto          85
+      61: aload         11
+      63: iload         9
+      65: daload
+      66: dstore        7
+      68: dload         5
+      70: dload         7
+      72: dload_1
+      73: dsub
+      74: dload         7
+      76: dload_1
+      77: dsub
+      78: dmul
+      79: dadd
+      80: dstore        5
+      82: iinc          9, 1
+      85: iload         9
+      87: iload         10
+      89: if_icmplt     61
+      92: dload         5
+      94: aload_0
+      95: arraylength
+      96: i2d
+      97: ddiv
+      98: invokestatic  #126                // Method java/lang/Math.sqrt:(D)D
+     101: dstore        5
+     103: dload         5
+     105: dreturn
+}
+Compiled from "DocumentCropper.java"
+public final class at.laborg.briss.utils.DocumentCropper {
+  private at.laborg.briss.utils.DocumentCropper();
+    Code:
+       0: aload_0
+       1: invokespecial #8                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static java.io.File crop(at.laborg.briss.model.CropDefinition) throws java.io.IOException, com.itextpdf.text.DocumentException, at.laborg.briss.exception.CropException;
+    Code:
+       0: aload_0
+       1: invokevirtual #23                 // Method at/laborg/briss/model/CropDefinition.getDestinationFile:()Ljava/io/File;
+       4: invokestatic  #29                 // Method at/laborg/briss/utils/BrissFileHandling.checkValidStateAndCreate:(Ljava/io/File;)Z
+       7: ifne          20
+      10: new           #17                 // class java/io/IOException
+      13: dup
+      14: ldc           #35                 // String Destination file not valid
+      16: invokespecial #37                 // Method java/io/IOException."<init>":(Ljava/lang/String;)V
+      19: athrow
+      20: aload_0
+      21: invokevirtual #40                 // Method at/laborg/briss/model/CropDefinition.getSourceFile:()Ljava/io/File;
+      24: invokestatic  #43                 // Method isPasswordRequired:(Ljava/io/File;)Z
+      27: ifeq          40
+      30: new           #21                 // class at/laborg/briss/exception/CropException
+      33: dup
+      34: ldc           #46                 // String Password required
+      36: invokespecial #48                 // Method at/laborg/briss/exception/CropException."<init>":(Ljava/lang/String;)V
+      39: athrow
+      40: new           #49                 // class at/laborg/briss/utils/DocumentCropper$PdfMetaInformation
+      43: dup
+      44: aload_0
+      45: invokevirtual #40                 // Method at/laborg/briss/model/CropDefinition.getSourceFile:()Ljava/io/File;
+      48: invokespecial #51                 // Method at/laborg/briss/utils/DocumentCropper$PdfMetaInformation."<init>":(Ljava/io/File;)V
+      51: astore_1
+      52: aload_0
+      53: aload_1
+      54: invokestatic  #54                 // Method copyToMultiplePages:(Lat/laborg/briss/model/CropDefinition;Lat/laborg/briss/utils/DocumentCropper$PdfMetaInformation;)Ljava/io/File;
+      57: astore_2
+      58: aload_0
+      59: aload_2
+      60: aload_1
+      61: invokestatic  #58                 // Method cropMultipliedFile:(Lat/laborg/briss/model/CropDefinition;Ljava/io/File;Lat/laborg/briss/utils/DocumentCropper$PdfMetaInformation;)V
+      64: aload_0
+      65: invokevirtual #23                 // Method at/laborg/briss/model/CropDefinition.getDestinationFile:()Ljava/io/File;
+      68: areturn
+
+  private static java.io.File copyToMultiplePages(at.laborg.briss.model.CropDefinition, at.laborg.briss.utils.DocumentCropper$PdfMetaInformation) throws java.io.IOException, com.itextpdf.text.DocumentException;
+    Code:
+       0: new           #68                 // class com/itextpdf/text/pdf/PdfReader
+       3: dup
+       4: aload_0
+       5: invokevirtual #40                 // Method at/laborg/briss/model/CropDefinition.getSourceFile:()Ljava/io/File;
+       8: invokevirtual #70                 // Method java/io/File.getAbsolutePath:()Ljava/lang/String;
+      11: invokespecial #76                 // Method com/itextpdf/text/pdf/PdfReader."<init>":(Ljava/lang/String;)V
+      14: astore_2
+      15: aload_2
+      16: iconst_0
+      17: invokestatic  #77                 // Method com/itextpdf/text/pdf/SimpleNamedDestination.getNamedDestination:(Lcom/itextpdf/text/pdf/PdfReader;Z)Ljava/util/HashMap;
+      20: astore_3
+      21: new           #83                 // class com/itextpdf/text/Document
+      24: dup
+      25: invokespecial #85                 // Method com/itextpdf/text/Document."<init>":()V
+      28: astore        4
+      30: ldc           #86                 // String cropped
+      32: ldc           #88                 // String .pdf
+      34: invokestatic  #90                 // Method java/io/File.createTempFile:(Ljava/lang/String;Ljava/lang/String;)Ljava/io/File;
+      37: astore        5
+      39: new           #94                 // class com/itextpdf/text/pdf/PdfSmartCopy
+      42: dup
+      43: aload         4
+      45: new           #96                 // class java/io/FileOutputStream
+      48: dup
+      49: aload         5
+      51: invokespecial #98                 // Method java/io/FileOutputStream."<init>":(Ljava/io/File;)V
+      54: invokespecial #99                 // Method com/itextpdf/text/pdf/PdfSmartCopy."<init>":(Lcom/itextpdf/text/Document;Ljava/io/OutputStream;)V
+      57: astore        6
+      59: aload         4
+      61: invokevirtual #102                // Method com/itextpdf/text/Document.open:()V
+      64: new           #105                // class java/util/HashMap
+      67: dup
+      68: invokespecial #107                // Method java/util/HashMap."<init>":()V
+      71: astore        7
+      73: aload_3
+      74: invokevirtual #108                // Method java/util/HashMap.keySet:()Ljava/util/Set;
+      77: invokeinterface #112,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      82: astore        9
+      84: goto          213
+      87: aload         9
+      89: invokeinterface #118,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      94: checkcast     #124                // class java/lang/String
+      97: astore        8
+      99: new           #126                // class java/util/StringTokenizer
+     102: dup
+     103: aload_3
+     104: aload         8
+     106: invokevirtual #128                // Method java/util/HashMap.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     109: checkcast     #124                // class java/lang/String
+     112: ldc           #132                // String
+     114: invokespecial #134                // Method java/util/StringTokenizer."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     117: astore        10
+     119: aload         10
+     121: invokevirtual #137                // Method java/util/StringTokenizer.hasMoreElements:()Z
+     124: ifeq          213
+     127: aload         10
+     129: invokevirtual #141                // Method java/util/StringTokenizer.nextElement:()Ljava/lang/Object;
+     132: checkcast     #124                // class java/lang/String
+     135: astore        11
+     137: aload         11
+     139: invokestatic  #144                // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+     142: istore        12
+     144: aload         7
+     146: iload         12
+     148: invokestatic  #150                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     151: invokeinterface #154,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     156: checkcast     #157                // class java/util/List
+     159: astore        13
+     161: aload         13
+     163: ifnonnull     203
+     166: new           #159                // class java/util/ArrayList
+     169: dup
+     170: invokespecial #161                // Method java/util/ArrayList."<init>":()V
+     173: astore        13
+     175: aload         13
+     177: aload         8
+     179: invokeinterface #162,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     184: pop
+     185: aload         7
+     187: iload         12
+     189: invokestatic  #150                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     192: aload         13
+     194: invokeinterface #166,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     199: pop
+     200: goto          213
+     203: aload         13
+     205: aload         8
+     207: invokeinterface #162,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     212: pop
+     213: aload         9
+     215: invokeinterface #170,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     220: ifne          87
+     223: iconst_0
+     224: istore        8
+     226: iconst_1
+     227: istore        9
+     229: goto          370
+     232: aload         6
+     234: aload_2
+     235: iload         9
+     237: invokevirtual #173                // Method com/itextpdf/text/pdf/PdfSmartCopy.getImportedPage:(Lcom/itextpdf/text/pdf/PdfReader;I)Lcom/itextpdf/text/pdf/PdfImportedPage;
+     240: astore        10
+     242: aload         6
+     244: aload         10
+     246: invokevirtual #177                // Method com/itextpdf/text/pdf/PdfSmartCopy.addPage:(Lcom/itextpdf/text/pdf/PdfImportedPage;)V
+     249: iinc          8, 1
+     252: aload         7
+     254: iload         9
+     256: invokestatic  #150                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     259: invokeinterface #154,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     264: checkcast     #157                // class java/util/List
+     267: astore        11
+     269: aload         11
+     271: ifnull        325
+     274: aload         11
+     276: invokeinterface #181,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     281: astore        13
+     283: goto          315
+     286: aload         13
+     288: invokeinterface #118,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     293: checkcast     #124                // class java/lang/String
+     296: astore        12
+     298: aload         6
+     300: aload         12
+     302: iload         8
+     304: new           #182                // class com/itextpdf/text/pdf/PdfDestination
+     307: dup
+     308: iconst_1
+     309: invokespecial #184                // Method com/itextpdf/text/pdf/PdfDestination."<init>":(I)V
+     312: invokevirtual #187                // Method com/itextpdf/text/pdf/PdfSmartCopy.addNamedDestination:(Ljava/lang/String;ILcom/itextpdf/text/pdf/PdfDestination;)V
+     315: aload         13
+     317: invokeinterface #170,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     322: ifne          286
+     325: aload_0
+     326: iload         9
+     328: invokestatic  #150                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     331: invokevirtual #191                // Method at/laborg/briss/model/CropDefinition.getRectanglesForPage:(Ljava/lang/Integer;)Ljava/util/List;
+     334: astore        12
+     336: iconst_1
+     337: istore        13
+     339: goto          355
+     342: aload         6
+     344: aload         10
+     346: invokevirtual #177                // Method com/itextpdf/text/pdf/PdfSmartCopy.addPage:(Lcom/itextpdf/text/pdf/PdfImportedPage;)V
+     349: iinc          8, 1
+     352: iinc          13, 1
+     355: iload         13
+     357: aload         12
+     359: invokeinterface #195,  1          // InterfaceMethod java/util/List.size:()I
+     364: if_icmplt     342
+     367: iinc          9, 1
+     370: iload         9
+     372: aload_1
+     373: invokevirtual #199                // Method at/laborg/briss/utils/DocumentCropper$PdfMetaInformation.getSourcePageCount:()I
+     376: if_icmple     232
+     379: aload         4
+     381: invokevirtual #202                // Method com/itextpdf/text/Document.close:()V
+     384: aload         6
+     386: invokevirtual #205                // Method com/itextpdf/text/pdf/PdfSmartCopy.close:()V
+     389: aload_2
+     390: invokevirtual #206                // Method com/itextpdf/text/pdf/PdfReader.close:()V
+     393: aload         5
+     395: areturn
+
+  private static void cropMultipliedFile(at.laborg.briss.model.CropDefinition, java.io.File, at.laborg.briss.utils.DocumentCropper$PdfMetaInformation) throws com.itextpdf.text.DocumentException, java.io.IOException;
+    Code:
+       0: new           #68                 // class com/itextpdf/text/pdf/PdfReader
+       3: dup
+       4: aload_1
+       5: invokevirtual #70                 // Method java/io/File.getAbsolutePath:()Ljava/lang/String;
+       8: invokespecial #76                 // Method com/itextpdf/text/pdf/PdfReader."<init>":(Ljava/lang/String;)V
+      11: astore_3
+      12: new           #240                // class com/itextpdf/text/pdf/PdfStamper
+      15: dup
+      16: aload_3
+      17: new           #96                 // class java/io/FileOutputStream
+      20: dup
+      21: aload_0
+      22: invokevirtual #23                 // Method at/laborg/briss/model/CropDefinition.getDestinationFile:()Ljava/io/File;
+      25: invokespecial #98                 // Method java/io/FileOutputStream."<init>":(Ljava/io/File;)V
+      28: invokespecial #242                // Method com/itextpdf/text/pdf/PdfStamper."<init>":(Lcom/itextpdf/text/pdf/PdfReader;Ljava/io/OutputStream;)V
+      31: astore        4
+      33: aload         4
+      35: aload_2
+      36: invokevirtual #245                // Method at/laborg/briss/utils/DocumentCropper$PdfMetaInformation.getSourceMetaInfo:()Ljava/util/HashMap;
+      39: invokevirtual #249                // Method com/itextpdf/text/pdf/PdfStamper.setMoreInfo:(Ljava/util/Map;)V
+      42: iconst_1
+      43: istore        6
+      45: iconst_1
+      46: istore        7
+      48: goto          260
+      51: aload_0
+      52: iload         7
+      54: invokestatic  #150                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      57: invokevirtual #191                // Method at/laborg/briss/model/CropDefinition.getRectanglesForPage:(Ljava/lang/Integer;)Ljava/util/List;
+      60: astore        8
+      62: aload         8
+      64: invokeinterface #253,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      69: ifeq          78
+      72: iinc          6, 1
+      75: goto          257
+      78: aload         8
+      80: invokeinterface #181,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      85: astore        10
+      87: goto          202
+      90: aload         10
+      92: invokeinterface #118,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      97: checkcast     #256                // class "[Ljava/lang/Float;"
+     100: astore        9
+     102: aload_3
+     103: iload         6
+     105: invokevirtual #258                // Method com/itextpdf/text/pdf/PdfReader.getPageN:(I)Lcom/itextpdf/text/pdf/PdfDictionary;
+     108: astore        5
+     110: new           #159                // class java/util/ArrayList
+     113: dup
+     114: invokespecial #161                // Method java/util/ArrayList."<init>":()V
+     117: astore        11
+     119: aload         11
+     121: aload_3
+     122: iload         6
+     124: ldc_w         #262                // String media
+     127: invokevirtual #264                // Method com/itextpdf/text/pdf/PdfReader.getBoxSize:(ILjava/lang/String;)Lcom/itextpdf/text/Rectangle;
+     130: invokeinterface #162,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     135: pop
+     136: aload         11
+     138: aload_3
+     139: iload         6
+     141: ldc_w         #268                // String crop
+     144: invokevirtual #264                // Method com/itextpdf/text/pdf/PdfReader.getBoxSize:(ILjava/lang/String;)Lcom/itextpdf/text/Rectangle;
+     147: invokeinterface #162,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     152: pop
+     153: aload_3
+     154: iload         6
+     156: invokevirtual #269                // Method com/itextpdf/text/pdf/PdfReader.getPageRotation:(I)I
+     159: istore        12
+     161: aload         11
+     163: aload         9
+     165: iload         12
+     167: invokestatic  #273                // Method at/laborg/briss/utils/RectangleHandler.calculateScaledRectangle:(Ljava/util/List;[Ljava/lang/Float;I)Lcom/itextpdf/text/Rectangle;
+     170: astore        13
+     172: aload         13
+     174: invokestatic  #279                // Method createScaledBoxArray:(Lcom/itextpdf/text/Rectangle;)Lcom/itextpdf/text/pdf/PdfArray;
+     177: astore        14
+     179: aload         5
+     181: getstatic     #283                // Field com/itextpdf/text/pdf/PdfName.CROPBOX:Lcom/itextpdf/text/pdf/PdfName;
+     184: aload         14
+     186: invokevirtual #289                // Method com/itextpdf/text/pdf/PdfDictionary.put:(Lcom/itextpdf/text/pdf/PdfName;Lcom/itextpdf/text/pdf/PdfObject;)V
+     189: aload         5
+     191: getstatic     #294                // Field com/itextpdf/text/pdf/PdfName.MEDIABOX:Lcom/itextpdf/text/pdf/PdfName;
+     194: aload         14
+     196: invokevirtual #289                // Method com/itextpdf/text/pdf/PdfDictionary.put:(Lcom/itextpdf/text/pdf/PdfName;Lcom/itextpdf/text/pdf/PdfObject;)V
+     199: iinc          6, 1
+     202: aload         10
+     204: invokeinterface #170,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     209: ifne          90
+     212: iconst_2
+     213: newarray       int
+     215: astore        9
+     217: aload         9
+     219: iconst_0
+     220: iload         6
+     222: iconst_1
+     223: isub
+     224: iastore
+     225: aload         9
+     227: iconst_1
+     228: aload_2
+     229: invokevirtual #199                // Method at/laborg/briss/utils/DocumentCropper$PdfMetaInformation.getSourcePageCount:()I
+     232: iload         6
+     234: iload         7
+     236: isub
+     237: iadd
+     238: iastore
+     239: aload_2
+     240: invokevirtual #297                // Method at/laborg/briss/utils/DocumentCropper$PdfMetaInformation.getSourceBookmarks:()Ljava/util/List;
+     243: aload         8
+     245: invokeinterface #195,  1          // InterfaceMethod java/util/List.size:()I
+     250: iconst_1
+     251: isub
+     252: aload         9
+     254: invokestatic  #301                // Method com/itextpdf/text/pdf/SimpleBookmark.shiftPageNumbers:(Ljava/util/List;I[I)V
+     257: iinc          7, 1
+     260: iload         7
+     262: aload_2
+     263: invokevirtual #199                // Method at/laborg/briss/utils/DocumentCropper$PdfMetaInformation.getSourcePageCount:()I
+     266: if_icmple     51
+     269: aload         4
+     271: aload_2
+     272: invokevirtual #297                // Method at/laborg/briss/utils/DocumentCropper$PdfMetaInformation.getSourceBookmarks:()Ljava/util/List;
+     275: invokevirtual #307                // Method com/itextpdf/text/pdf/PdfStamper.setOutlines:(Ljava/util/List;)V
+     278: aload         4
+     280: invokevirtual #311                // Method com/itextpdf/text/pdf/PdfStamper.close:()V
+     283: aload_3
+     284: invokevirtual #206                // Method com/itextpdf/text/pdf/PdfReader.close:()V
+     287: return
+
+  private static com.itextpdf.text.pdf.PdfArray createScaledBoxArray(com.itextpdf.text.Rectangle);
+    Code:
+       0: new           #330                // class com/itextpdf/text/pdf/PdfArray
+       3: dup
+       4: invokespecial #332                // Method com/itextpdf/text/pdf/PdfArray."<init>":()V
+       7: astore_1
+       8: aload_1
+       9: new           #333                // class com/itextpdf/text/pdf/PdfNumber
+      12: dup
+      13: aload_0
+      14: invokevirtual #335                // Method com/itextpdf/text/Rectangle.getLeft:()F
+      17: invokespecial #341                // Method com/itextpdf/text/pdf/PdfNumber."<init>":(F)V
+      20: invokevirtual #344                // Method com/itextpdf/text/pdf/PdfArray.add:(Lcom/itextpdf/text/pdf/PdfObject;)Z
+      23: pop
+      24: aload_1
+      25: new           #333                // class com/itextpdf/text/pdf/PdfNumber
+      28: dup
+      29: aload_0
+      30: invokevirtual #347                // Method com/itextpdf/text/Rectangle.getBottom:()F
+      33: invokespecial #341                // Method com/itextpdf/text/pdf/PdfNumber."<init>":(F)V
+      36: invokevirtual #344                // Method com/itextpdf/text/pdf/PdfArray.add:(Lcom/itextpdf/text/pdf/PdfObject;)Z
+      39: pop
+      40: aload_1
+      41: new           #333                // class com/itextpdf/text/pdf/PdfNumber
+      44: dup
+      45: aload_0
+      46: invokevirtual #350                // Method com/itextpdf/text/Rectangle.getRight:()F
+      49: invokespecial #341                // Method com/itextpdf/text/pdf/PdfNumber."<init>":(F)V
+      52: invokevirtual #344                // Method com/itextpdf/text/pdf/PdfArray.add:(Lcom/itextpdf/text/pdf/PdfObject;)Z
+      55: pop
+      56: aload_1
+      57: new           #333                // class com/itextpdf/text/pdf/PdfNumber
+      60: dup
+      61: aload_0
+      62: invokevirtual #353                // Method com/itextpdf/text/Rectangle.getTop:()F
+      65: invokespecial #341                // Method com/itextpdf/text/pdf/PdfNumber."<init>":(F)V
+      68: invokevirtual #344                // Method com/itextpdf/text/pdf/PdfArray.add:(Lcom/itextpdf/text/pdf/PdfObject;)Z
+      71: pop
+      72: aload_1
+      73: areturn
+
+  private static boolean isPasswordRequired(java.io.File) throws java.io.IOException;
+    Code:
+       0: new           #68                 // class com/itextpdf/text/pdf/PdfReader
+       3: dup
+       4: aload_0
+       5: invokevirtual #70                 // Method java/io/File.getAbsolutePath:()Ljava/lang/String;
+       8: invokespecial #76                 // Method com/itextpdf/text/pdf/PdfReader."<init>":(Ljava/lang/String;)V
+      11: astore_1
+      12: aload_1
+      13: invokevirtual #356                // Method com/itextpdf/text/pdf/PdfReader.isEncrypted:()Z
+      16: istore_2
+      17: aload_1
+      18: invokevirtual #206                // Method com/itextpdf/text/pdf/PdfReader.close:()V
+      21: iload_2
+      22: ireturn
+}
+Compiled from "PageNumberParser.java"
+public final class at.laborg.briss.utils.PageNumberParser {
+  private at.laborg.briss.utils.PageNumberParser();
+    Code:
+       0: aload_0
+       1: invokespecial #8                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static java.util.Set<java.lang.Integer> parsePageNumber(java.lang.String) throws java.text.ParseException;
+    Code:
+       0: ldc           #21                 // String [^0-9-;]
+       2: invokestatic  #23                 // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+       5: astore_1
+       6: aload_1
+       7: aload_0
+       8: invokevirtual #29                 // Method java/util/regex/Pattern.matcher:(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+      11: astore_2
+      12: aload_2
+      13: invokevirtual #33                 // Method java/util/regex/Matcher.find:()Z
+      16: ifeq          30
+      19: new           #17                 // class java/text/ParseException
+      22: dup
+      23: ldc           #39                 // String Allowed characters: \"0-9\" \";\" \"-\"
+      25: iconst_0
+      26: invokespecial #41                 // Method java/text/ParseException."<init>":(Ljava/lang/String;I)V
+      29: athrow
+      30: new           #44                 // class java/util/StringTokenizer
+      33: dup
+      34: aload_0
+      35: ldc           #46                 // String ;
+      37: invokespecial #48                 // Method java/util/StringTokenizer."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      40: astore_3
+      41: new           #51                 // class java/util/HashSet
+      44: dup
+      45: invokespecial #53                 // Method java/util/HashSet."<init>":()V
+      48: astore        4
+      50: goto          68
+      53: aload         4
+      55: aload_3
+      56: invokevirtual #54                 // Method java/util/StringTokenizer.nextToken:()Ljava/lang/String;
+      59: invokestatic  #58                 // Method extractPageNumbers:(Ljava/lang/String;)Ljava/util/Set;
+      62: invokeinterface #61,  2           // InterfaceMethod java/util/Set.addAll:(Ljava/util/Collection;)Z
+      67: pop
+      68: aload_3
+      69: invokevirtual #67                 // Method java/util/StringTokenizer.hasMoreElements:()Z
+      72: ifne          53
+      75: aload         4
+      77: areturn
+
+  private static java.util.Set<java.lang.Integer> extractPageNumbers(java.lang.String) throws java.text.ParseException;
+    Code:
+       0: new           #44                 // class java/util/StringTokenizer
+       3: dup
+       4: aload_0
+       5: ldc           #82                 // String -
+       7: invokespecial #48                 // Method java/util/StringTokenizer."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      10: astore_1
+      11: new           #51                 // class java/util/HashSet
+      14: dup
+      15: invokespecial #53                 // Method java/util/HashSet."<init>":()V
+      18: astore_2
+      19: aload_1
+      20: invokevirtual #84                 // Method java/util/StringTokenizer.countTokens:()I
+      23: iconst_1
+      24: if_icmpne     45
+      27: aload_0
+      28: invokestatic  #88                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      31: invokestatic  #94                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      34: astore_3
+      35: aload_2
+      36: aload_3
+      37: invokeinterface #98,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+      42: pop
+      43: aload_2
+      44: areturn
+      45: aload_1
+      46: invokevirtual #84                 // Method java/util/StringTokenizer.countTokens:()I
+      49: iconst_2
+      50: if_icmpne     136
+      53: aload_1
+      54: invokevirtual #54                 // Method java/util/StringTokenizer.nextToken:()Ljava/lang/String;
+      57: invokestatic  #88                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      60: istore_3
+      61: aload_1
+      62: invokevirtual #54                 // Method java/util/StringTokenizer.nextToken:()Ljava/lang/String;
+      65: invokestatic  #88                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      68: istore        4
+      70: iload_3
+      71: iload         4
+      73: if_icmple     106
+      76: new           #17                 // class java/text/ParseException
+      79: dup
+      80: new           #102                // class java/lang/StringBuilder
+      83: dup
+      84: ldc           #104                // String End must be bigger than start in \"
+      86: invokespecial #106                // Method java/lang/StringBuilder."<init>":(Ljava/lang/String;)V
+      89: aload_0
+      90: invokevirtual #109                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      93: ldc           #113                // String \"
+      95: invokevirtual #109                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      98: invokevirtual #115                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     101: iconst_0
+     102: invokespecial #41                 // Method java/text/ParseException."<init>":(Ljava/lang/String;I)V
+     105: athrow
+     106: iload_3
+     107: istore        5
+     109: goto          127
+     112: aload_2
+     113: iload         5
+     115: invokestatic  #94                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     118: invokeinterface #98,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+     123: pop
+     124: iinc          5, 1
+     127: iload         5
+     129: iload         4
+     131: if_icmple     112
+     134: aload_2
+     135: areturn
+     136: new           #17                 // class java/text/ParseException
+     139: dup
+     140: new           #102                // class java/lang/StringBuilder
+     143: dup
+     144: ldc           #113                // String \"
+     146: invokespecial #106                // Method java/lang/StringBuilder."<init>":(Ljava/lang/String;)V
+     149: aload_0
+     150: invokevirtual #109                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     153: ldc           #118                // String \" has to many - characters!
+     155: invokevirtual #109                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     158: invokevirtual #115                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     161: iconst_0
+     162: invokespecial #41                 // Method java/text/ParseException."<init>":(Ljava/lang/String;I)V
+     165: athrow
+}
+Compiled from "BrissGUI.java"
+public class at.laborg.briss.BrissGUI extends javax.swing.JFrame implements java.awt.event.ActionListener,java.beans.PropertyChangeListener,java.awt.event.ComponentListener {
+  private static final java.lang.String EXCLUDE_PAGES_DESCRIPTION;
+
+  private static final java.lang.String SET_SIZE_DESCRIPTION;
+
+  private static final java.lang.String SET_POSITION_DESCRIPTION;
+
+  private static final java.lang.String LOAD;
+
+  private static final java.lang.String CROP;
+
+  private static final java.lang.String EXIT;
+
+  private static final java.lang.String MAXIMIZE_WIDTH;
+
+  private static final java.lang.String MAXIMIZE_HEIGHT;
+
+  private static final java.lang.String EXCLUDE_OTHER_PAGES;
+
+  private static final java.lang.String PREVIEW;
+
+  private static final java.lang.String DONATE;
+
+  private static final java.lang.String HELP;
+
+  private static final java.lang.String MAXIMIZE_SIZE;
+
+  private static final java.lang.String SET_SIZE;
+
+  private static final java.lang.String SET_POSITION;
+
+  private static final java.lang.String MOVE_LEFT;
+
+  private static final java.lang.String MOVE_RIGHT;
+
+  private static final java.lang.String MOVE_UP;
+
+  private static final java.lang.String MOVE_DOWN;
+
+  private static final java.lang.String SELECT_ALL;
+
+  private static final java.lang.String SELECT_NONE;
+
+  private static final java.lang.String DONATION_URI;
+
+  private static final java.lang.String RES_ICON_PATH;
+
+  private javax.swing.JMenuBar menuBar;
+
+  private javax.swing.JPanel previewPanel;
+
+  private javax.swing.JProgressBar progressBar;
+
+  private javax.swing.JMenuItem loadButton;
+
+  private javax.swing.JMenuItem cropButton;
+
+  private javax.swing.JMenuItem maximizeWidthButton;
+
+  private javax.swing.JMenuItem maximizeHeightButton;
+
+  private javax.swing.JMenuItem showPreviewButton;
+
+  private javax.swing.JMenuItem showHelpButton;
+
+  private javax.swing.JMenuItem openDonationLinkButton;
+
+  private javax.swing.JMenuItem excludePagesButton;
+
+  private javax.swing.JMenuItem maximizeSizeButton;
+
+  private javax.swing.JMenuItem setSizeButton;
+
+  private javax.swing.JMenuItem setPositionButton;
+
+  private javax.swing.JMenuItem moveLeftButton;
+
+  private javax.swing.JMenuItem moveRightButton;
+
+  private javax.swing.JMenuItem moveUpButton;
+
+  private javax.swing.JMenuItem moveDownButton;
+
+  private javax.swing.JMenuItem selectAllButton;
+
+  private javax.swing.JMenuItem selectNoneButton;
+
+  private java.util.List<at.laborg.briss.gui.MergedPanel> mergedPanels;
+
+  private java.io.File lastOpenDir;
+
+  private at.laborg.briss.model.WorkingSet workingSet;
+
+  public at.laborg.briss.BrissGUI(java.lang.String[]);
+    Code:
+       0: aload_0
+       1: ldc           #117                // String BRISS - BRight Snippet Sire
+       3: invokespecial #119                // Method javax/swing/JFrame."<init>":(Ljava/lang/String;)V
+       6: aload_0
+       7: aconst_null
+       8: putfield      #122                // Field mergedPanels:Ljava/util/List;
+      11: aload_0
+      12: invokespecial #124                // Method init:()V
+      15: aload_0
+      16: aload_1
+      17: invokespecial #128                // Method tryToLoadFileFromArgument:([Ljava/lang/String;)V
+      20: return
+
+  private void tryToLoadFileFromArgument(java.lang.String[]);
+    Code:
+       0: aload_1
+       1: arraylength
+       2: ifne          6
+       5: return
+       6: new           #137                // class java/io/File
+       9: dup
+      10: aload_1
+      11: iconst_0
+      12: aaload
+      13: invokespecial #139                // Method java/io/File."<init>":(Ljava/lang/String;)V
+      16: astore_2
+      17: aload_2
+      18: invokevirtual #140                // Method java/io/File.exists:()Z
+      21: ifeq          74
+      24: aload_2
+      25: invokevirtual #144                // Method java/io/File.getAbsolutePath:()Ljava/lang/String;
+      28: invokevirtual #148                // Method java/lang/String.trim:()Ljava/lang/String;
+      31: ldc           #153                // String .pdf
+      33: invokevirtual #155                // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+      36: ifeq          74
+      39: aload_0
+      40: aload_2
+      41: invokevirtual #159                // Method importNewPdfFile:(Ljava/io/File;)V
+      44: goto          74
+      47: astore_3
+      48: aload_0
+      49: aload_3
+      50: invokevirtual #163                // Method java/io/IOException.getMessage:()Ljava/lang/String;
+      53: ldc           #168                // String Briss error
+      55: iconst_0
+      56: invokestatic  #170                // Method javax/swing/JOptionPane.showMessageDialog:(Ljava/awt/Component;Ljava/lang/Object;Ljava/lang/String;I)V
+      59: goto          74
+      62: astore_3
+      63: aload_0
+      64: aload_3
+      65: invokevirtual #176                // Method org/jpedal/exception/PdfException.getMessage:()Ljava/lang/String;
+      68: ldc           #168                // String Briss error
+      70: iconst_0
+      71: invokestatic  #170                // Method javax/swing/JOptionPane.showMessageDialog:(Ljava/awt/Component;Ljava/lang/Object;Ljava/lang/String;I)V
+      74: return
+    Exception table:
+       from    to  target type
+          39    44    47   Class java/io/IOException
+          39    44    62   Class org/jpedal/exception/PdfException
+
+  private void init();
+    Code:
+       0: aload_0
+       1: iconst_3
+       2: invokevirtual #183                // Method setDefaultCloseOperation:(I)V
+       5: aload_0
+       6: new           #187                // class at/laborg/briss/BrissTransferHandler
+       9: dup
+      10: aload_0
+      11: invokespecial #189                // Method at/laborg/briss/BrissTransferHandler."<init>":(Lat/laborg/briss/BrissGUI;)V
+      14: invokevirtual #192                // Method setTransferHandler:(Ljavax/swing/TransferHandler;)V
+      17: aload_0
+      18: invokespecial #196                // Method setUILook:()V
+      21: aload_0
+      22: invokespecial #199                // Method loadIcon:()V
+      25: aload_0
+      26: new           #202                // class javax/swing/JMenuBar
+      29: dup
+      30: invokespecial #204                // Method javax/swing/JMenuBar."<init>":()V
+      33: putfield      #206                // Field menuBar:Ljavax/swing/JMenuBar;
+      36: new           #208                // class javax/swing/JMenu
+      39: dup
+      40: ldc           #210                // String File
+      42: invokespecial #212                // Method javax/swing/JMenu."<init>":(Ljava/lang/String;)V
+      45: astore_1
+      46: aload_1
+      47: bipush        70
+      49: invokevirtual #213                // Method javax/swing/JMenu.setMnemonic:(I)V
+      52: new           #208                // class javax/swing/JMenu
+      55: dup
+      56: ldc           #216                // String Rectangle
+      58: invokespecial #212                // Method javax/swing/JMenu."<init>":(Ljava/lang/String;)V
+      61: astore_2
+      62: aload_2
+      63: bipush        82
+      65: invokevirtual #213                // Method javax/swing/JMenu.setMnemonic:(I)V
+      68: new           #208                // class javax/swing/JMenu
+      71: dup
+      72: ldc           #218                // String Action
+      74: invokespecial #212                // Method javax/swing/JMenu."<init>":(Ljava/lang/String;)V
+      77: astore_3
+      78: aload_3
+      79: bipush        65
+      81: invokevirtual #213                // Method javax/swing/JMenu.setMnemonic:(I)V
+      84: aload_0
+      85: getfield      #206                // Field menuBar:Ljavax/swing/JMenuBar;
+      88: aload_1
+      89: invokevirtual #220                // Method javax/swing/JMenuBar.add:(Ljavax/swing/JMenu;)Ljavax/swing/JMenu;
+      92: pop
+      93: aload_0
+      94: getfield      #206                // Field menuBar:Ljavax/swing/JMenuBar;
+      97: aload_2
+      98: invokevirtual #220                // Method javax/swing/JMenuBar.add:(Ljavax/swing/JMenu;)Ljavax/swing/JMenu;
+     101: pop
+     102: aload_0
+     103: getfield      #206                // Field menuBar:Ljavax/swing/JMenuBar;
+     106: aload_3
+     107: invokevirtual #220                // Method javax/swing/JMenuBar.add:(Ljavax/swing/JMenu;)Ljavax/swing/JMenu;
+     110: pop
+     111: aload_0
+     112: new           #224                // class javax/swing/JMenuItem
+     115: dup
+     116: ldc           #23                 // String Load File
+     118: bipush        76
+     120: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     123: putfield      #229                // Field loadButton:Ljavax/swing/JMenuItem;
+     126: aload_0
+     127: getfield      #229                // Field loadButton:Ljavax/swing/JMenuItem;
+     130: aload_0
+     131: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     134: aload_0
+     135: getfield      #229                // Field loadButton:Ljavax/swing/JMenuItem;
+     138: iconst_1
+     139: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     142: aload_0
+     143: getfield      #229                // Field loadButton:Ljavax/swing/JMenuItem;
+     146: bipush        76
+     148: iconst_0
+     149: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     152: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     155: aload_1
+     156: aload_0
+     157: getfield      #229                // Field loadButton:Ljavax/swing/JMenuItem;
+     160: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     163: pop
+     164: aload_1
+     165: invokevirtual #252                // Method javax/swing/JMenu.addSeparator:()V
+     168: aload_0
+     169: new           #224                // class javax/swing/JMenuItem
+     172: dup
+     173: ldc           #44                 // String Donate
+     175: invokespecial #255                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;)V
+     178: putfield      #256                // Field openDonationLinkButton:Ljavax/swing/JMenuItem;
+     181: aload_0
+     182: getfield      #256                // Field openDonationLinkButton:Ljavax/swing/JMenuItem;
+     185: aload_0
+     186: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     189: aload_1
+     190: aload_0
+     191: getfield      #256                // Field openDonationLinkButton:Ljavax/swing/JMenuItem;
+     194: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     197: pop
+     198: aload_0
+     199: new           #224                // class javax/swing/JMenuItem
+     202: dup
+     203: ldc           #38                 // String Exclude other pages
+     205: invokespecial #255                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;)V
+     208: putfield      #258                // Field excludePagesButton:Ljavax/swing/JMenuItem;
+     211: aload_0
+     212: getfield      #258                // Field excludePagesButton:Ljavax/swing/JMenuItem;
+     215: aload_0
+     216: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     219: aload_0
+     220: getfield      #258                // Field excludePagesButton:Ljavax/swing/JMenuItem;
+     223: iconst_0
+     224: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     227: aload_0
+     228: getfield      #258                // Field excludePagesButton:Ljavax/swing/JMenuItem;
+     231: bipush        69
+     233: iconst_0
+     234: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     237: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     240: aload_1
+     241: aload_0
+     242: getfield      #258                // Field excludePagesButton:Ljavax/swing/JMenuItem;
+     245: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     248: pop
+     249: aload_0
+     250: new           #224                // class javax/swing/JMenuItem
+     253: dup
+     254: ldc           #47                 // String Show help
+     256: invokespecial #255                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;)V
+     259: putfield      #260                // Field showHelpButton:Ljavax/swing/JMenuItem;
+     262: aload_0
+     263: getfield      #260                // Field showHelpButton:Ljavax/swing/JMenuItem;
+     266: aload_0
+     267: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     270: aload_1
+     271: aload_0
+     272: getfield      #260                // Field showHelpButton:Ljavax/swing/JMenuItem;
+     275: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     278: pop
+     279: aload_1
+     280: invokevirtual #252                // Method javax/swing/JMenu.addSeparator:()V
+     283: new           #224                // class javax/swing/JMenuItem
+     286: dup
+     287: ldc           #29                 // String Exit
+     289: bipush        69
+     291: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     294: astore        4
+     296: aload         4
+     298: aload_0
+     299: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     302: aload_1
+     303: aload         4
+     305: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     308: pop
+     309: aload_0
+     310: new           #224                // class javax/swing/JMenuItem
+     313: dup
+     314: ldc           #26                 // String Crop PDF
+     316: bipush        67
+     318: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     321: putfield      #262                // Field cropButton:Ljavax/swing/JMenuItem;
+     324: aload_0
+     325: getfield      #262                // Field cropButton:Ljavax/swing/JMenuItem;
+     328: aload_0
+     329: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     332: aload_0
+     333: getfield      #262                // Field cropButton:Ljavax/swing/JMenuItem;
+     336: iconst_0
+     337: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     340: aload_0
+     341: getfield      #262                // Field cropButton:Ljavax/swing/JMenuItem;
+     344: bipush        67
+     346: iconst_0
+     347: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     350: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     353: aload_3
+     354: aload_0
+     355: getfield      #262                // Field cropButton:Ljavax/swing/JMenuItem;
+     358: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     361: pop
+     362: aload_0
+     363: new           #224                // class javax/swing/JMenuItem
+     366: dup
+     367: ldc           #41                 // String Preview
+     369: bipush        80
+     371: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     374: putfield      #264                // Field showPreviewButton:Ljavax/swing/JMenuItem;
+     377: aload_0
+     378: getfield      #264                // Field showPreviewButton:Ljavax/swing/JMenuItem;
+     381: aload_0
+     382: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     385: aload_0
+     386: getfield      #264                // Field showPreviewButton:Ljavax/swing/JMenuItem;
+     389: iconst_0
+     390: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     393: aload_0
+     394: getfield      #264                // Field showPreviewButton:Ljavax/swing/JMenuItem;
+     397: bipush        80
+     399: iconst_0
+     400: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     403: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     406: aload_3
+     407: aload_0
+     408: getfield      #264                // Field showPreviewButton:Ljavax/swing/JMenuItem;
+     411: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     414: pop
+     415: aload_0
+     416: new           #224                // class javax/swing/JMenuItem
+     419: dup
+     420: ldc           #32                 // String Maximize to width
+     422: bipush        87
+     424: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     427: putfield      #266                // Field maximizeWidthButton:Ljavax/swing/JMenuItem;
+     430: aload_0
+     431: getfield      #266                // Field maximizeWidthButton:Ljavax/swing/JMenuItem;
+     434: aload_0
+     435: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     438: aload_0
+     439: getfield      #266                // Field maximizeWidthButton:Ljavax/swing/JMenuItem;
+     442: iconst_0
+     443: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     446: aload_0
+     447: getfield      #266                // Field maximizeWidthButton:Ljavax/swing/JMenuItem;
+     450: bipush        87
+     452: iconst_0
+     453: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     456: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     459: aload_2
+     460: aload_0
+     461: getfield      #266                // Field maximizeWidthButton:Ljavax/swing/JMenuItem;
+     464: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     467: pop
+     468: aload_0
+     469: new           #224                // class javax/swing/JMenuItem
+     472: dup
+     473: ldc           #35                 // String Maximize to height
+     475: bipush        72
+     477: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     480: putfield      #268                // Field maximizeHeightButton:Ljavax/swing/JMenuItem;
+     483: aload_0
+     484: getfield      #268                // Field maximizeHeightButton:Ljavax/swing/JMenuItem;
+     487: aload_0
+     488: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     491: aload_0
+     492: getfield      #268                // Field maximizeHeightButton:Ljavax/swing/JMenuItem;
+     495: iconst_0
+     496: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     499: aload_0
+     500: getfield      #268                // Field maximizeHeightButton:Ljavax/swing/JMenuItem;
+     503: bipush        72
+     505: iconst_0
+     506: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     509: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     512: aload_2
+     513: aload_0
+     514: getfield      #268                // Field maximizeHeightButton:Ljavax/swing/JMenuItem;
+     517: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     520: pop
+     521: aload_0
+     522: new           #224                // class javax/swing/JMenuItem
+     525: dup
+     526: ldc           #50                 // String Maximize to size (all)
+     528: bipush        90
+     530: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     533: putfield      #270                // Field maximizeSizeButton:Ljavax/swing/JMenuItem;
+     536: aload_0
+     537: getfield      #270                // Field maximizeSizeButton:Ljavax/swing/JMenuItem;
+     540: aload_0
+     541: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     544: aload_0
+     545: getfield      #270                // Field maximizeSizeButton:Ljavax/swing/JMenuItem;
+     548: iconst_0
+     549: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     552: aload_0
+     553: getfield      #270                // Field maximizeSizeButton:Ljavax/swing/JMenuItem;
+     556: bipush        77
+     558: iconst_0
+     559: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     562: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     565: aload_2
+     566: aload_0
+     567: getfield      #270                // Field maximizeSizeButton:Ljavax/swing/JMenuItem;
+     570: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     573: pop
+     574: aload_0
+     575: new           #224                // class javax/swing/JMenuItem
+     578: dup
+     579: ldc           #53                 // String Set size (selected)
+     581: bipush        83
+     583: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     586: putfield      #272                // Field setSizeButton:Ljavax/swing/JMenuItem;
+     589: aload_0
+     590: getfield      #272                // Field setSizeButton:Ljavax/swing/JMenuItem;
+     593: aload_0
+     594: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     597: aload_0
+     598: getfield      #272                // Field setSizeButton:Ljavax/swing/JMenuItem;
+     601: iconst_0
+     602: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     605: aload_0
+     606: getfield      #272                // Field setSizeButton:Ljavax/swing/JMenuItem;
+     609: bipush        83
+     611: iconst_0
+     612: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     615: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     618: aload_2
+     619: aload_0
+     620: getfield      #272                // Field setSizeButton:Ljavax/swing/JMenuItem;
+     623: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     626: pop
+     627: aload_0
+     628: new           #224                // class javax/swing/JMenuItem
+     631: dup
+     632: ldc           #56                 // String Set position (selected)
+     634: bipush        79
+     636: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     639: putfield      #274                // Field setPositionButton:Ljavax/swing/JMenuItem;
+     642: aload_0
+     643: getfield      #274                // Field setPositionButton:Ljavax/swing/JMenuItem;
+     646: aload_0
+     647: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     650: aload_0
+     651: getfield      #274                // Field setPositionButton:Ljavax/swing/JMenuItem;
+     654: iconst_0
+     655: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     658: aload_0
+     659: getfield      #274                // Field setPositionButton:Ljavax/swing/JMenuItem;
+     662: bipush        79
+     664: iconst_0
+     665: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     668: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     671: aload_2
+     672: aload_0
+     673: getfield      #274                // Field setPositionButton:Ljavax/swing/JMenuItem;
+     676: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     679: pop
+     680: aload_2
+     681: invokevirtual #252                // Method javax/swing/JMenu.addSeparator:()V
+     684: aload_0
+     685: new           #224                // class javax/swing/JMenuItem
+     688: dup
+     689: ldc           #59                 // String Move left (selected)
+     691: bipush        37
+     693: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     696: putfield      #276                // Field moveLeftButton:Ljavax/swing/JMenuItem;
+     699: aload_0
+     700: getfield      #276                // Field moveLeftButton:Ljavax/swing/JMenuItem;
+     703: aload_0
+     704: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     707: aload_0
+     708: getfield      #276                // Field moveLeftButton:Ljavax/swing/JMenuItem;
+     711: iconst_0
+     712: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     715: aload_0
+     716: getfield      #276                // Field moveLeftButton:Ljavax/swing/JMenuItem;
+     719: bipush        37
+     721: iconst_0
+     722: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     725: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     728: aload_2
+     729: aload_0
+     730: getfield      #276                // Field moveLeftButton:Ljavax/swing/JMenuItem;
+     733: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     736: pop
+     737: aload_0
+     738: new           #224                // class javax/swing/JMenuItem
+     741: dup
+     742: ldc           #62                 // String Move right (selected)
+     744: bipush        39
+     746: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     749: putfield      #278                // Field moveRightButton:Ljavax/swing/JMenuItem;
+     752: aload_0
+     753: getfield      #278                // Field moveRightButton:Ljavax/swing/JMenuItem;
+     756: aload_0
+     757: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     760: aload_0
+     761: getfield      #278                // Field moveRightButton:Ljavax/swing/JMenuItem;
+     764: iconst_0
+     765: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     768: aload_0
+     769: getfield      #278                // Field moveRightButton:Ljavax/swing/JMenuItem;
+     772: bipush        39
+     774: iconst_0
+     775: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     778: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     781: aload_2
+     782: aload_0
+     783: getfield      #278                // Field moveRightButton:Ljavax/swing/JMenuItem;
+     786: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     789: pop
+     790: aload_0
+     791: new           #224                // class javax/swing/JMenuItem
+     794: dup
+     795: ldc           #65                 // String Move up (selected)
+     797: bipush        38
+     799: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     802: putfield      #280                // Field moveUpButton:Ljavax/swing/JMenuItem;
+     805: aload_0
+     806: getfield      #280                // Field moveUpButton:Ljavax/swing/JMenuItem;
+     809: aload_0
+     810: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     813: aload_0
+     814: getfield      #280                // Field moveUpButton:Ljavax/swing/JMenuItem;
+     817: iconst_0
+     818: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     821: aload_0
+     822: getfield      #280                // Field moveUpButton:Ljavax/swing/JMenuItem;
+     825: bipush        38
+     827: iconst_0
+     828: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     831: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     834: aload_2
+     835: aload_0
+     836: getfield      #280                // Field moveUpButton:Ljavax/swing/JMenuItem;
+     839: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     842: pop
+     843: aload_0
+     844: new           #224                // class javax/swing/JMenuItem
+     847: dup
+     848: ldc           #68                 // String Move down (selected)
+     850: bipush        40
+     852: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     855: putfield      #282                // Field moveDownButton:Ljavax/swing/JMenuItem;
+     858: aload_0
+     859: getfield      #282                // Field moveDownButton:Ljavax/swing/JMenuItem;
+     862: aload_0
+     863: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     866: aload_0
+     867: getfield      #282                // Field moveDownButton:Ljavax/swing/JMenuItem;
+     870: iconst_0
+     871: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     874: aload_0
+     875: getfield      #282                // Field moveDownButton:Ljavax/swing/JMenuItem;
+     878: bipush        40
+     880: iconst_0
+     881: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     884: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     887: aload_2
+     888: aload_0
+     889: getfield      #282                // Field moveDownButton:Ljavax/swing/JMenuItem;
+     892: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     895: pop
+     896: aload_2
+     897: invokevirtual #252                // Method javax/swing/JMenu.addSeparator:()V
+     900: aload_0
+     901: new           #224                // class javax/swing/JMenuItem
+     904: dup
+     905: ldc           #71                 // String Select all
+     907: iconst_0
+     908: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     911: putfield      #284                // Field selectAllButton:Ljavax/swing/JMenuItem;
+     914: aload_0
+     915: getfield      #284                // Field selectAllButton:Ljavax/swing/JMenuItem;
+     918: aload_0
+     919: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     922: aload_0
+     923: getfield      #284                // Field selectAllButton:Ljavax/swing/JMenuItem;
+     926: iconst_0
+     927: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     930: aload_0
+     931: getfield      #284                // Field selectAllButton:Ljavax/swing/JMenuItem;
+     934: bipush        65
+     936: iconst_0
+     937: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     940: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     943: aload_2
+     944: aload_0
+     945: getfield      #284                // Field selectAllButton:Ljavax/swing/JMenuItem;
+     948: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+     951: pop
+     952: aload_0
+     953: new           #224                // class javax/swing/JMenuItem
+     956: dup
+     957: ldc           #74                 // String Select none
+     959: iconst_0
+     960: invokespecial #226                // Method javax/swing/JMenuItem."<init>":(Ljava/lang/String;I)V
+     963: putfield      #286                // Field selectNoneButton:Ljavax/swing/JMenuItem;
+     966: aload_0
+     967: getfield      #286                // Field selectNoneButton:Ljavax/swing/JMenuItem;
+     970: aload_0
+     971: invokevirtual #231                // Method javax/swing/JMenuItem.addActionListener:(Ljava/awt/event/ActionListener;)V
+     974: aload_0
+     975: getfield      #286                // Field selectNoneButton:Ljavax/swing/JMenuItem;
+     978: iconst_0
+     979: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     982: aload_0
+     983: getfield      #286                // Field selectNoneButton:Ljavax/swing/JMenuItem;
+     986: bipush        78
+     988: iconst_0
+     989: invokestatic  #239                // Method javax/swing/KeyStroke.getKeyStroke:(II)Ljavax/swing/KeyStroke;
+     992: invokevirtual #245                // Method javax/swing/JMenuItem.setAccelerator:(Ljavax/swing/KeyStroke;)V
+     995: aload_2
+     996: aload_0
+     997: getfield      #286                // Field selectNoneButton:Ljavax/swing/JMenuItem;
+    1000: invokevirtual #249                // Method javax/swing/JMenu.add:(Ljavax/swing/JMenuItem;)Ljavax/swing/JMenuItem;
+    1003: pop
+    1004: aload_0
+    1005: aload_0
+    1006: getfield      #206                // Field menuBar:Ljavax/swing/JMenuBar;
+    1009: invokevirtual #288                // Method setJMenuBar:(Ljavax/swing/JMenuBar;)V
+    1012: aload_0
+    1013: new           #292                // class javax/swing/JPanel
+    1016: dup
+    1017: invokespecial #294                // Method javax/swing/JPanel."<init>":()V
+    1020: putfield      #295                // Field previewPanel:Ljavax/swing/JPanel;
+    1023: aload_0
+    1024: getfield      #295                // Field previewPanel:Ljavax/swing/JPanel;
+    1027: new           #297                // class at/laborg/briss/gui/WrapLayout
+    1030: dup
+    1031: iconst_0
+    1032: iconst_4
+    1033: iconst_4
+    1034: invokespecial #299                // Method at/laborg/briss/gui/WrapLayout."<init>":(III)V
+    1037: invokevirtual #302                // Method javax/swing/JPanel.setLayout:(Ljava/awt/LayoutManager;)V
+    1040: aload_0
+    1041: getfield      #295                // Field previewPanel:Ljavax/swing/JPanel;
+    1044: iconst_1
+    1045: invokevirtual #306                // Method javax/swing/JPanel.setEnabled:(Z)V
+    1048: aload_0
+    1049: getfield      #295                // Field previewPanel:Ljavax/swing/JPanel;
+    1052: getstatic     #307                // Field java/awt/Color.BLACK:Ljava/awt/Color;
+    1055: invokevirtual #313                // Method javax/swing/JPanel.setBackground:(Ljava/awt/Color;)V
+    1058: aload_0
+    1059: getfield      #295                // Field previewPanel:Ljavax/swing/JPanel;
+    1062: aload_0
+    1063: invokevirtual #317                // Method javax/swing/JPanel.addComponentListener:(Ljava/awt/event/ComponentListener;)V
+    1066: aload_0
+    1067: new           #321                // class javax/swing/JProgressBar
+    1070: dup
+    1071: iconst_0
+    1072: bipush        100
+    1074: invokespecial #323                // Method javax/swing/JProgressBar."<init>":(II)V
+    1077: putfield      #326                // Field progressBar:Ljavax/swing/JProgressBar;
+    1080: aload_0
+    1081: getfield      #326                // Field progressBar:Ljavax/swing/JProgressBar;
+    1084: iconst_1
+    1085: invokevirtual #328                // Method javax/swing/JProgressBar.setStringPainted:(Z)V
+    1088: aload_0
+    1089: getfield      #326                // Field progressBar:Ljavax/swing/JProgressBar;
+    1092: new           #331                // class java/awt/Dimension
+    1095: dup
+    1096: sipush        400
+    1099: bipush        30
+    1101: invokespecial #333                // Method java/awt/Dimension."<init>":(II)V
+    1104: invokevirtual #334                // Method javax/swing/JProgressBar.setPreferredSize:(Ljava/awt/Dimension;)V
+    1107: aload_0
+    1108: getfield      #326                // Field progressBar:Ljavax/swing/JProgressBar;
+    1111: iconst_1
+    1112: invokevirtual #338                // Method javax/swing/JProgressBar.setEnabled:(Z)V
+    1115: new           #339                // class javax/swing/JScrollPane
+    1118: dup
+    1119: aload_0
+    1120: getfield      #295                // Field previewPanel:Ljavax/swing/JPanel;
+    1123: bipush        22
+    1125: bipush        30
+    1127: invokespecial #341                // Method javax/swing/JScrollPane."<init>":(Ljava/awt/Component;II)V
+    1130: astore        5
+    1132: aload         5
+    1134: invokevirtual #344                // Method javax/swing/JScrollPane.getVerticalScrollBar:()Ljavax/swing/JScrollBar;
+    1137: bipush        30
+    1139: invokevirtual #348                // Method javax/swing/JScrollBar.setUnitIncrement:(I)V
+    1142: aload_0
+    1143: aload         5
+    1145: ldc_w         #353                // String Center
+    1148: invokevirtual #355                // Method add:(Ljava/awt/Component;Ljava/lang/Object;)V
+    1151: aload_0
+    1152: aload_0
+    1153: getfield      #326                // Field progressBar:Ljavax/swing/JProgressBar;
+    1156: ldc_w         #358                // String Last
+    1159: invokevirtual #355                // Method add:(Ljava/awt/Component;Ljava/lang/Object;)V
+    1162: aload_0
+    1163: invokevirtual #360                // Method pack:()V
+    1166: aload_0
+    1167: iconst_1
+    1168: invokevirtual #363                // Method setVisible:(Z)V
+    1171: return
+
+  private void setUILook();
+    Code:
+       0: invokestatic  #373                // Method javax/swing/UIManager.getSystemLookAndFeelClassName:()Ljava/lang/String;
+       3: invokestatic  #378                // Method javax/swing/UIManager.setLookAndFeel:(Ljava/lang/String;)V
+       6: goto          31
+       9: astore_1
+      10: getstatic     #381                // Field java/lang/System.out:Ljava/io/PrintStream;
+      13: ldc_w         #387                // String Unable to load native look and feel
+      16: invokevirtual #389                // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+      19: goto          31
+      22: astore_1
+      23: goto          31
+      26: astore_1
+      27: goto          31
+      30: astore_1
+      31: return
+    Exception table:
+       from    to  target type
+           0     6     9   Class javax/swing/UnsupportedLookAndFeelException
+           0     6    22   Class java/lang/ClassNotFoundException
+           0     6    26   Class java/lang/InstantiationException
+           0     6    30   Class java/lang/IllegalAccessException
+
+  private void loadIcon();
+    Code:
+       0: aload_0
+       1: invokevirtual #404                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       4: ldc           #80                 // String /Briss_icon_032x032.gif
+       6: invokevirtual #410                // Method java/lang/Class.getResourceAsStream:(Ljava/lang/String;)Ljava/io/InputStream;
+       9: astore_1
+      10: ldc_w         #416                // int 102400
+      13: newarray       byte
+      15: astore_2
+      16: aload_1
+      17: aload_2
+      18: invokevirtual #417                // Method java/io/InputStream.read:([B)I
+      21: istore_3
+      22: aload_2
+      23: iload_3
+      24: invokestatic  #423                // Method java/util/Arrays.copyOf:([BI)[B
+      27: astore        4
+      29: aload_0
+      30: new           #429                // class javax/swing/ImageIcon
+      33: dup
+      34: aload         4
+      36: invokespecial #431                // Method javax/swing/ImageIcon."<init>":([B)V
+      39: invokevirtual #434                // Method javax/swing/ImageIcon.getImage:()Ljava/awt/Image;
+      42: invokevirtual #438                // Method setIconImage:(Ljava/awt/Image;)V
+      45: goto          49
+      48: astore_3
+      49: return
+    Exception table:
+       from    to  target type
+          16    45    48   Class java/io/IOException
+
+  private static at.laborg.briss.model.PageExcludes getExcludedPages();
+    Code:
+       0: iconst_0
+       1: istore_0
+       2: ldc_w         #451                // String
+       5: astore_1
+       6: goto          61
+       9: ldc           #14                 // String Enter pages to be excluded from merging (e.g.: \"1-4;6;9\").\nFirst page has number: 1\nIf you don\'t know what you should do just press \"Cancel\"
+      11: aload_1
+      12: invokestatic  #453                // Method javax/swing/JOptionPane.showInputDialog:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/String;
+      15: astore_2
+      16: aload_2
+      17: astore_1
+      18: aload_2
+      19: ifnull        32
+      22: aload_2
+      23: ldc_w         #451                // String
+      26: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      29: ifeq          34
+      32: aconst_null
+      33: areturn
+      34: new           #461                // class at/laborg/briss/model/PageExcludes
+      37: dup
+      38: aload_2
+      39: invokestatic  #463                // Method at/laborg/briss/utils/PageNumberParser.parsePageNumber:(Ljava/lang/String;)Ljava/util/Set;
+      42: invokespecial #469                // Method at/laborg/briss/model/PageExcludes."<init>":(Ljava/util/Set;)V
+      45: astore_3
+      46: aload_3
+      47: areturn
+      48: astore_3
+      49: aconst_null
+      50: aload_3
+      51: invokevirtual #472                // Method java/text/ParseException.getMessage:()Ljava/lang/String;
+      54: ldc_w         #475                // String Input Error
+      57: iconst_0
+      58: invokestatic  #170                // Method javax/swing/JOptionPane.showMessageDialog:(Ljava/awt/Component;Ljava/lang/Object;Ljava/lang/String;I)V
+      61: iload_0
+      62: ifeq          9
+      65: aconst_null
+      66: areturn
+    Exception table:
+       from    to  target type
+          34    47    48   Class java/text/ParseException
+
+  private java.io.File getCropFileDestination(java.io.File);
+    Code:
+       0: aload_1
+       1: invokestatic  #486                // Method at/laborg/briss/utils/BrissFileHandling.getRecommendedDestination:(Ljava/io/File;)Ljava/io/File;
+       4: astore_2
+       5: new           #491                // class javax/swing/JFileChooser
+       8: dup
+       9: aload_0
+      10: getfield      #493                // Field lastOpenDir:Ljava/io/File;
+      13: invokespecial #495                // Method javax/swing/JFileChooser."<init>":(Ljava/io/File;)V
+      16: astore_3
+      17: aload_3
+      18: aload_2
+      19: invokevirtual #497                // Method javax/swing/JFileChooser.setSelectedFile:(Ljava/io/File;)V
+      22: aload_3
+      23: new           #500                // class at/laborg/briss/utils/PDFFileFilter
+      26: dup
+      27: invokespecial #502                // Method at/laborg/briss/utils/PDFFileFilter."<init>":()V
+      30: invokevirtual #503                // Method javax/swing/JFileChooser.setFileFilter:(Ljavax/swing/filechooser/FileFilter;)V
+      33: aload_3
+      34: aload_0
+      35: invokevirtual #507                // Method javax/swing/JFileChooser.showSaveDialog:(Ljava/awt/Component;)I
+      38: istore        4
+      40: iload         4
+      42: ifne          50
+      45: aload_3
+      46: invokevirtual #511                // Method javax/swing/JFileChooser.getSelectedFile:()Ljava/io/File;
+      49: areturn
+      50: aconst_null
+      51: areturn
+
+  private java.io.File getNewFileToCrop();
+    Code:
+       0: new           #491                // class javax/swing/JFileChooser
+       3: dup
+       4: aload_0
+       5: getfield      #493                // Field lastOpenDir:Ljava/io/File;
+       8: invokespecial #495                // Method javax/swing/JFileChooser."<init>":(Ljava/io/File;)V
+      11: astore_1
+      12: aload_1
+      13: new           #500                // class at/laborg/briss/utils/PDFFileFilter
+      16: dup
+      17: invokespecial #502                // Method at/laborg/briss/utils/PDFFileFilter."<init>":()V
+      20: invokevirtual #503                // Method javax/swing/JFileChooser.setFileFilter:(Ljavax/swing/filechooser/FileFilter;)V
+      23: aload_1
+      24: aload_0
+      25: invokevirtual #521                // Method javax/swing/JFileChooser.showOpenDialog:(Ljava/awt/Component;)I
+      28: istore_2
+      29: iload_2
+      30: ifne          38
+      33: aload_1
+      34: invokevirtual #511                // Method javax/swing/JFileChooser.getSelectedFile:()Ljava/io/File;
+      37: areturn
+      38: aconst_null
+      39: areturn
+
+  public void actionPerformed(java.awt.event.ActionEvent);
+    Code:
+       0: aload_1
+       1: invokevirtual #526                // Method java/awt/event/ActionEvent.getActionCommand:()Ljava/lang/String;
+       4: ldc           #44                 // String Donate
+       6: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       9: ifeq          36
+      12: ldc           #77                 // String http://sourceforge.net/project/project_donations.php?group_id=320676
+      14: invokestatic  #531                // Method at/laborg/briss/utils/DesktopHelper.openDonationLink:(Ljava/lang/String;)V
+      17: goto          722
+      20: astore_2
+      21: aload_0
+      22: aload_2
+      23: invokevirtual #163                // Method java/io/IOException.getMessage:()Ljava/lang/String;
+      26: ldc_w         #536                // String Error occured while loading
+      29: iconst_0
+      30: invokestatic  #170                // Method javax/swing/JOptionPane.showMessageDialog:(Ljava/awt/Component;Ljava/lang/Object;Ljava/lang/String;I)V
+      33: goto          722
+      36: aload_1
+      37: invokevirtual #526                // Method java/awt/event/ActionEvent.getActionCommand:()Ljava/lang/String;
+      40: ldc           #29                 // String Exit
+      42: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      45: ifeq          55
+      48: iconst_0
+      49: invokestatic  #538                // Method java/lang/System.exit:(I)V
+      52: goto          722
+      55: aload_1
+      56: invokevirtual #526                // Method java/awt/event/ActionEvent.getActionCommand:()Ljava/lang/String;
+      59: ldc           #47                 // String Show help
+      61: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      64: ifeq          83
+      67: new           #541                // class at/laborg/briss/gui/HelpDialog
+      70: aload_0
+      71: ldc_w         #543                // String Briss Help
+      74: getstatic     #545                // Field java/awt/Dialog$ModalityType.MODELESS:Ljava/awt/Dialog$ModalityType;
+      77: invokespecial #551                // Method at/laborg/briss/gui/HelpDialog."<init>":(Ljava/awt/Frame;Ljava/lang/String;Ljava/awt/Dialog$ModalityType;)V
+      80: goto          722
+      83: aload_1
+      84: invokevirtual #526                // Method java/awt/event/ActionEvent.getActionCommand:()Ljava/lang/String;
+      87: ldc           #35                 // String Maximize to height
+      89: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      92: ifeq          102
+      95: aload_0
+      96: invokespecial #554                // Method maximizeHeightInSelectedRects:()V
+      99: goto          722
+     102: aload_1
+     103: invokevirtual #526                // Method java/awt/event/ActionEvent.getActionCommand:()Ljava/lang/String;
+     106: ldc           #32                 // String Maximize to width
+     108: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     111: ifeq          121
+     114: aload_0
+     115: invokespecial #557                // Method maximizeWidthInSelectedRects:()V
+     118: goto          722
+     121: aload_1
+     122: invokevirtual #526                // Method java/awt/event/ActionEvent.getActionCommand:()Ljava/lang/String;
+     125: ldc           #38                 // String Exclude other pages
+     127: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     130: ifeq          219
+     133: aload_0
+     134: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+     137: invokevirtual #562                // Method at/laborg/briss/model/WorkingSet.getSourceFile:()Ljava/io/File;
+     140: ifnonnull     144
+     143: return
+     144: aload_0
+     145: ldc           #38                 // String Exclude other pages
+     147: invokespecial #567                // Method setWorkingState:(Ljava/lang/String;)V
+     150: aload_0
+     151: invokespecial #570                // Method reloadWithOtherExcludes:()V
+     154: aload_0
+     155: new           #573                // class java/lang/StringBuilder
+     158: dup
+     159: ldc_w         #575                // String BRISS -
+     162: invokespecial #577                // Method java/lang/StringBuilder."<init>":(Ljava/lang/String;)V
+     165: aload_0
+     166: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+     169: invokevirtual #562                // Method at/laborg/briss/model/WorkingSet.getSourceFile:()Ljava/io/File;
+     172: invokevirtual #578                // Method java/io/File.getName:()Ljava/lang/String;
+     175: invokevirtual #581                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     178: invokevirtual #585                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     181: invokevirtual #588                // Method setTitle:(Ljava/lang/String;)V
+     184: goto          722
+     187: astore_2
+     188: aload_0
+     189: aload_2
+     190: invokevirtual #163                // Method java/io/IOException.getMessage:()Ljava/lang/String;
+     193: ldc_w         #591                // String Error occured while reloading
+     196: iconst_0
+     197: invokestatic  #170                // Method javax/swing/JOptionPane.showMessageDialog:(Ljava/awt/Component;Ljava/lang/Object;Ljava/lang/String;I)V
+     200: goto          722
+     203: astore_2
+     204: aload_0
+     205: aload_2
+     206: invokevirtual #176                // Method org/jpedal/exception/PdfException.getMessage:()Ljava/lang/String;
+     209: ldc_w         #591                // String Error occured while reloading
+     212: iconst_0
+     213: invokestatic  #170                // Method javax/swing/JOptionPane.showMessageDialog:(Ljava/awt/Component;Ljava/lang/Object;Ljava/lang/String;I)V
+     216: goto          722
+     219: aload_1
+     220: invokevirtual #526                // Method java/awt/event/ActionEvent.getActionCommand:()Ljava/lang/String;
+     223: ldc           #23                 // String Load File
+     225: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     228: ifeq          305
+     231: aload_0
+     232: invokespecial #593                // Method getNewFileToCrop:()Ljava/io/File;
+     235: astore_2
+     236: aload_2
+     237: ifnonnull     241
+     240: return
+     241: aload_0
+     242: aload_2
+     243: invokevirtual #159                // Method importNewPdfFile:(Ljava/io/File;)V
+     246: aload_0
+     247: new           #573                // class java/lang/StringBuilder
+     250: dup
+     251: ldc_w         #575                // String BRISS -
+     254: invokespecial #577                // Method java/lang/StringBuilder."<init>":(Ljava/lang/String;)V
+     257: aload_2
+     258: invokevirtual #578                // Method java/io/File.getName:()Ljava/lang/String;
+     261: invokevirtual #581                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     264: invokevirtual #585                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     267: invokevirtual #588                // Method setTitle:(Ljava/lang/String;)V
+     270: goto          722
+     273: astore_3
+     274: aload_0
+     275: aload_3
+     276: invokevirtual #163                // Method java/io/IOException.getMessage:()Ljava/lang/String;
+     279: ldc_w         #536                // String Error occured while loading
+     282: iconst_0
+     283: invokestatic  #170                // Method javax/swing/JOptionPane.showMessageDialog:(Ljava/awt/Component;Ljava/lang/Object;Ljava/lang/String;I)V
+     286: goto          722
+     289: astore_3
+     290: aload_0
+     291: aload_3
+     292: invokevirtual #176                // Method org/jpedal/exception/PdfException.getMessage:()Ljava/lang/String;
+     295: ldc_w         #536                // String Error occured while loading
+     298: iconst_0
+     299: invokestatic  #170                // Method javax/swing/JOptionPane.showMessageDialog:(Ljava/awt/Component;Ljava/lang/Object;Ljava/lang/String;I)V
+     302: goto          722
+     305: aload_1
+     306: invokevirtual #526                // Method java/awt/event/ActionEvent.getActionCommand:()Ljava/lang/String;
+     309: ldc           #26                 // String Crop PDF
+     311: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     314: ifeq          444
+     317: aload_0
+     318: ldc_w         #595                // String loading PDF
+     321: invokespecial #567                // Method setWorkingState:(Ljava/lang/String;)V
+     324: aload_0
+     325: aload_0
+     326: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+     329: invokevirtual #562                // Method at/laborg/briss/model/WorkingSet.getSourceFile:()Ljava/io/File;
+     332: invokespecial #597                // Method createAndExecuteCropJob:(Ljava/io/File;)Ljava/io/File;
+     335: astore_2
+     336: aload_2
+     337: ifnull        434
+     340: aload_2
+     341: invokestatic  #600                // Method at/laborg/briss/utils/DesktopHelper.openFileWithDesktopApp:(Ljava/io/File;)V
+     344: aload_0
+     345: aload_2
+     346: invokevirtual #603                // Method java/io/File.getParentFile:()Ljava/io/File;
+     349: putfield      #493                // Field lastOpenDir:Ljava/io/File;
+     352: goto          434
+     355: astore_2
+     356: aload_0
+     357: aload_2
+     358: invokevirtual #163                // Method java/io/IOException.getMessage:()Ljava/lang/String;
+     361: ldc_w         #606                // String Error occured while cropping
+     364: iconst_0
+     365: invokestatic  #170                // Method javax/swing/JOptionPane.showMessageDialog:(Ljava/awt/Component;Ljava/lang/Object;Ljava/lang/String;I)V
+     368: aload_0
+     369: ldc_w         #451                // String
+     372: invokespecial #608                // Method setIdleState:(Ljava/lang/String;)V
+     375: goto          722
+     378: astore_2
+     379: aload_0
+     380: aload_2
+     381: invokevirtual #611                // Method com/itextpdf/text/DocumentException.getMessage:()Ljava/lang/String;
+     384: ldc_w         #606                // String Error occured while cropping
+     387: iconst_0
+     388: invokestatic  #170                // Method javax/swing/JOptionPane.showMessageDialog:(Ljava/awt/Component;Ljava/lang/Object;Ljava/lang/String;I)V
+     391: aload_0
+     392: ldc_w         #451                // String
+     395: invokespecial #608                // Method setIdleState:(Ljava/lang/String;)V
+     398: goto          722
+     401: astore_2
+     402: aload_0
+     403: aload_2
+     404: invokevirtual #614                // Method at/laborg/briss/exception/CropException.getMessage:()Ljava/lang/String;
+     407: ldc_w         #606                // String Error occured while cropping
+     410: iconst_0
+     411: invokestatic  #170                // Method javax/swing/JOptionPane.showMessageDialog:(Ljava/awt/Component;Ljava/lang/Object;Ljava/lang/String;I)V
+     414: aload_0
+     415: ldc_w         #451                // String
+     418: invokespecial #608                // Method setIdleState:(Ljava/lang/String;)V
+     421: goto          722
+     424: astore_3
+     425: aload_0
+     426: ldc_w         #451                // String
+     429: invokespecial #608                // Method setIdleState:(Ljava/lang/String;)V
+     432: aload_3
+     433: athrow
+     434: aload_0
+     435: ldc_w         #451                // String
+     438: invokespecial #608                // Method setIdleState:(Ljava/lang/String;)V
+     441: goto          722
+     444: aload_1
+     445: invokevirtual #526                // Method java/awt/event/ActionEvent.getActionCommand:()Ljava/lang/String;
+     448: ldc           #41                 // String Preview
+     450: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     453: ifeq          564
+     456: aload_0
+     457: ldc_w         #617                // String Creating and showing preview...
+     460: invokespecial #567                // Method setWorkingState:(Ljava/lang/String;)V
+     463: aload_0
+     464: invokespecial #619                // Method createAndExecuteCropJobForPreview:()Ljava/io/File;
+     467: astore_2
+     468: aload_2
+     469: invokestatic  #600                // Method at/laborg/briss/utils/DesktopHelper.openFileWithDesktopApp:(Ljava/io/File;)V
+     472: goto          554
+     475: astore_2
+     476: aload_0
+     477: aload_2
+     478: invokevirtual #163                // Method java/io/IOException.getMessage:()Ljava/lang/String;
+     481: ldc_w         #606                // String Error occured while cropping
+     484: iconst_0
+     485: invokestatic  #170                // Method javax/swing/JOptionPane.showMessageDialog:(Ljava/awt/Component;Ljava/lang/Object;Ljava/lang/String;I)V
+     488: aload_0
+     489: ldc_w         #451                // String
+     492: invokespecial #608                // Method setIdleState:(Ljava/lang/String;)V
+     495: goto          722
+     498: astore_2
+     499: aload_0
+     500: aload_2
+     501: invokevirtual #611                // Method com/itextpdf/text/DocumentException.getMessage:()Ljava/lang/String;
+     504: ldc_w         #606                // String Error occured while cropping
+     507: iconst_0
+     508: invokestatic  #170                // Method javax/swing/JOptionPane.showMessageDialog:(Ljava/awt/Component;Ljava/lang/Object;Ljava/lang/String;I)V
+     511: aload_0
+     512: ldc_w         #451                // String
+     515: invokespecial #608                // Method setIdleState:(Ljava/lang/String;)V
+     518: goto          722
+     521: astore_2
+     522: aload_0
+     523: aload_2
+     524: invokevirtual #614                // Method at/laborg/briss/exception/CropException.getMessage:()Ljava/lang/String;
+     527: ldc_w         #606                // String Error occured while cropping
+     530: iconst_0
+     531: invokestatic  #170                // Method javax/swing/JOptionPane.showMessageDialog:(Ljava/awt/Component;Ljava/lang/Object;Ljava/lang/String;I)V
+     534: aload_0
+     535: ldc_w         #451                // String
+     538: invokespecial #608                // Method setIdleState:(Ljava/lang/String;)V
+     541: goto          722
+     544: astore_3
+     545: aload_0
+     546: ldc_w         #451                // String
+     549: invokespecial #608                // Method setIdleState:(Ljava/lang/String;)V
+     552: aload_3
+     553: athrow
+     554: aload_0
+     555: ldc_w         #451                // String
+     558: invokespecial #608                // Method setIdleState:(Ljava/lang/String;)V
+     561: goto          722
+     564: aload_1
+     565: invokevirtual #526                // Method java/awt/event/ActionEvent.getActionCommand:()Ljava/lang/String;
+     568: ldc           #50                 // String Maximize to size (all)
+     570: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     573: ifeq          583
+     576: aload_0
+     577: invokespecial #622                // Method maximizeSizeInAllRects:()V
+     580: goto          722
+     583: aload_1
+     584: invokevirtual #526                // Method java/awt/event/ActionEvent.getActionCommand:()Ljava/lang/String;
+     587: ldc           #53                 // String Set size (selected)
+     589: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     592: ifeq          602
+     595: aload_0
+     596: invokevirtual #625                // Method setDefinedSizeSelRects:()V
+     599: goto          722
+     602: aload_1
+     603: invokevirtual #526                // Method java/awt/event/ActionEvent.getActionCommand:()Ljava/lang/String;
+     606: ldc           #56                 // String Set position (selected)
+     608: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     611: ifeq          621
+     614: aload_0
+     615: invokevirtual #628                // Method setPositionSelRects:()V
+     618: goto          722
+     621: aload_1
+     622: invokevirtual #526                // Method java/awt/event/ActionEvent.getActionCommand:()Ljava/lang/String;
+     625: ldc           #71                 // String Select all
+     627: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     630: ifeq          673
+     633: aload_0
+     634: getfield      #122                // Field mergedPanels:Ljava/util/List;
+     637: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     642: astore_3
+     643: goto          661
+     646: aload_3
+     647: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     652: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+     655: astore_2
+     656: aload_2
+     657: iconst_1
+     658: invokevirtual #645                // Method at/laborg/briss/gui/MergedPanel.selectCrops:(Z)V
+     661: aload_3
+     662: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     667: ifne          646
+     670: goto          722
+     673: aload_1
+     674: invokevirtual #526                // Method java/awt/event/ActionEvent.getActionCommand:()Ljava/lang/String;
+     677: ldc           #74                 // String Select none
+     679: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     682: ifeq          722
+     685: aload_0
+     686: getfield      #122                // Field mergedPanels:Ljava/util/List;
+     689: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     694: astore_3
+     695: goto          713
+     698: aload_3
+     699: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     704: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+     707: astore_2
+     708: aload_2
+     709: iconst_0
+     710: invokevirtual #645                // Method at/laborg/briss/gui/MergedPanel.selectCrops:(Z)V
+     713: aload_3
+     714: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     719: ifne          698
+     722: return
+    Exception table:
+       from    to  target type
+          12    17    20   Class java/io/IOException
+         150   184   187   Class java/io/IOException
+         150   184   203   Class org/jpedal/exception/PdfException
+         241   270   273   Class java/io/IOException
+         241   270   289   Class org/jpedal/exception/PdfException
+         317   352   355   Class java/io/IOException
+         317   352   378   Class com/itextpdf/text/DocumentException
+         317   352   401   Class at/laborg/briss/exception/CropException
+         317   368   424   any
+         378   391   424   any
+         401   414   424   any
+         456   472   475   Class java/io/IOException
+         456   472   498   Class com/itextpdf/text/DocumentException
+         456   472   521   Class at/laborg/briss/exception/CropException
+         456   488   544   any
+         498   511   544   any
+         521   534   544   any
+
+  private java.io.File createAndExecuteCropJobForPreview() throws java.io.IOException, com.itextpdf.text.DocumentException, at.laborg.briss.exception.CropException;
+    Code:
+       0: ldc_w         #660                // String briss
+       3: ldc           #153                // String .pdf
+       5: invokestatic  #662                // Method java/io/File.createTempFile:(Ljava/lang/String;Ljava/lang/String;)Ljava/io/File;
+       8: astore_1
+       9: aload_0
+      10: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+      13: invokevirtual #562                // Method at/laborg/briss/model/WorkingSet.getSourceFile:()Ljava/io/File;
+      16: aload_1
+      17: aload_0
+      18: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+      21: invokevirtual #666                // Method at/laborg/briss/model/WorkingSet.getClusterDefinition:()Lat/laborg/briss/model/ClusterDefinition;
+      24: invokestatic  #670                // Method at/laborg/briss/model/CropDefinition.createCropDefinition:(Ljava/io/File;Ljava/io/File;Lat/laborg/briss/model/ClusterDefinition;)Lat/laborg/briss/model/CropDefinition;
+      27: astore_2
+      28: aload_2
+      29: invokestatic  #676                // Method at/laborg/briss/utils/DocumentCropper.crop:(Lat/laborg/briss/model/CropDefinition;)Ljava/io/File;
+      32: astore_3
+      33: aload_3
+      34: areturn
+
+  private java.io.File createAndExecuteCropJob(java.io.File) throws java.io.IOException, com.itextpdf.text.DocumentException, at.laborg.briss.exception.CropException;
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+       5: invokevirtual #562                // Method at/laborg/briss/model/WorkingSet.getSourceFile:()Ljava/io/File;
+       8: invokespecial #685                // Method getCropFileDestination:(Ljava/io/File;)Ljava/io/File;
+      11: astore_2
+      12: aload_2
+      13: ifnonnull     18
+      16: aconst_null
+      17: areturn
+      18: aload_0
+      19: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+      22: invokevirtual #562                // Method at/laborg/briss/model/WorkingSet.getSourceFile:()Ljava/io/File;
+      25: aload_2
+      26: aload_0
+      27: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+      30: invokevirtual #666                // Method at/laborg/briss/model/WorkingSet.getClusterDefinition:()Lat/laborg/briss/model/ClusterDefinition;
+      33: invokestatic  #670                // Method at/laborg/briss/model/CropDefinition.createCropDefinition:(Ljava/io/File;Ljava/io/File;Lat/laborg/briss/model/ClusterDefinition;)Lat/laborg/briss/model/CropDefinition;
+      36: astore_3
+      37: aload_3
+      38: invokestatic  #676                // Method at/laborg/briss/utils/DocumentCropper.crop:(Lat/laborg/briss/model/CropDefinition;)Ljava/io/File;
+      41: astore        4
+      43: aload         4
+      45: areturn
+
+  private void setIdleState(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #326                // Field progressBar:Ljavax/swing/JProgressBar;
+       4: iconst_0
+       5: invokevirtual #689                // Method javax/swing/JProgressBar.setValue:(I)V
+       8: aload_0
+       9: getfield      #326                // Field progressBar:Ljavax/swing/JProgressBar;
+      12: aload_1
+      13: invokevirtual #692                // Method javax/swing/JProgressBar.setString:(Ljava/lang/String;)V
+      16: aload_0
+      17: iconst_0
+      18: invokestatic  #695                // Method java/awt/Cursor.getPredefinedCursor:(I)Ljava/awt/Cursor;
+      21: invokevirtual #701                // Method setCursor:(Ljava/awt/Cursor;)V
+      24: return
+
+  private void setWorkingState(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #326                // Field progressBar:Ljavax/swing/JProgressBar;
+       4: aload_1
+       5: invokevirtual #692                // Method javax/swing/JProgressBar.setString:(Ljava/lang/String;)V
+       8: aload_0
+       9: iconst_3
+      10: invokestatic  #695                // Method java/awt/Cursor.getPredefinedCursor:(I)Ljava/awt/Cursor;
+      13: invokevirtual #701                // Method setCursor:(Ljava/awt/Cursor;)V
+      16: return
+
+  void importNewPdfFile(java.io.File) throws java.io.IOException, org.jpedal.exception.PdfException;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #603                // Method java/io/File.getParentFile:()Ljava/io/File;
+       5: putfield      #493                // Field lastOpenDir:Ljava/io/File;
+       8: aload_0
+       9: getfield      #295                // Field previewPanel:Ljavax/swing/JPanel;
+      12: invokevirtual #706                // Method javax/swing/JPanel.removeAll:()V
+      15: aload_0
+      16: getfield      #326                // Field progressBar:Ljavax/swing/JProgressBar;
+      19: ldc_w         #709                // String Loading new file - Creating merged previews
+      22: invokevirtual #692                // Method javax/swing/JProgressBar.setString:(Ljava/lang/String;)V
+      25: new           #711                // class at/laborg/briss/BrissGUI$ClusterPagesTask
+      28: dup
+      29: aload_0
+      30: aload_1
+      31: invokestatic  #713                // Method getExcludedPages:()Lat/laborg/briss/model/PageExcludes;
+      34: invokespecial #715                // Method at/laborg/briss/BrissGUI$ClusterPagesTask."<init>":(Lat/laborg/briss/BrissGUI;Ljava/io/File;Lat/laborg/briss/model/PageExcludes;)V
+      37: astore_2
+      38: aload_2
+      39: aload_0
+      40: invokevirtual #718                // Method at/laborg/briss/BrissGUI$ClusterPagesTask.addPropertyChangeListener:(Ljava/beans/PropertyChangeListener;)V
+      43: aload_2
+      44: invokevirtual #722                // Method at/laborg/briss/BrissGUI$ClusterPagesTask.execute:()V
+      47: return
+
+  private void reloadWithOtherExcludes() throws java.io.IOException, org.jpedal.exception.PdfException;
+    Code:
+       0: aload_0
+       1: getfield      #295                // Field previewPanel:Ljavax/swing/JPanel;
+       4: invokevirtual #706                // Method javax/swing/JPanel.removeAll:()V
+       7: aload_0
+       8: getfield      #326                // Field progressBar:Ljavax/swing/JProgressBar;
+      11: ldc_w         #728                // String Reloading file - Creating merged previews
+      14: invokevirtual #692                // Method javax/swing/JProgressBar.setString:(Ljava/lang/String;)V
+      17: new           #711                // class at/laborg/briss/BrissGUI$ClusterPagesTask
+      20: dup
+      21: aload_0
+      22: aload_0
+      23: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+      26: invokevirtual #562                // Method at/laborg/briss/model/WorkingSet.getSourceFile:()Ljava/io/File;
+      29: invokestatic  #713                // Method getExcludedPages:()Lat/laborg/briss/model/PageExcludes;
+      32: invokespecial #715                // Method at/laborg/briss/BrissGUI$ClusterPagesTask."<init>":(Lat/laborg/briss/BrissGUI;Ljava/io/File;Lat/laborg/briss/model/PageExcludes;)V
+      35: astore_1
+      36: aload_1
+      37: aload_0
+      38: invokevirtual #718                // Method at/laborg/briss/BrissGUI$ClusterPagesTask.addPropertyChangeListener:(Ljava/beans/PropertyChangeListener;)V
+      41: aload_1
+      42: invokevirtual #722                // Method at/laborg/briss/BrissGUI$ClusterPagesTask.execute:()V
+      45: return
+
+  private void maximizeWidthInSelectedRects();
+    Code:
+       0: iconst_m1
+       1: istore_1
+       2: aload_0
+       3: getfield      #122                // Field mergedPanels:Ljava/util/List;
+       6: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      11: astore_3
+      12: goto          40
+      15: aload_3
+      16: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      21: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+      24: astore_2
+      25: aload_2
+      26: invokevirtual #730                // Method at/laborg/briss/gui/MergedPanel.getWidestSelectedRect:()I
+      29: istore        4
+      31: iload_1
+      32: iload         4
+      34: if_icmpge     40
+      37: iload         4
+      39: istore_1
+      40: aload_3
+      41: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      46: ifne          15
+      49: iload_1
+      50: iconst_m1
+      51: if_icmpne     55
+      54: return
+      55: aload_0
+      56: getfield      #122                // Field mergedPanels:Ljava/util/List;
+      59: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      64: astore_3
+      65: goto          83
+      68: aload_3
+      69: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      74: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+      77: astore_2
+      78: aload_2
+      79: iload_1
+      80: invokevirtual #734                // Method at/laborg/briss/gui/MergedPanel.setSelCropWidth:(I)V
+      83: aload_3
+      84: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      89: ifne          68
+      92: return
+
+  private void maximizeHeightInSelectedRects();
+    Code:
+       0: iconst_m1
+       1: istore_1
+       2: aload_0
+       3: getfield      #122                // Field mergedPanels:Ljava/util/List;
+       6: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      11: astore_3
+      12: goto          40
+      15: aload_3
+      16: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      21: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+      24: astore_2
+      25: aload_2
+      26: invokevirtual #740                // Method at/laborg/briss/gui/MergedPanel.getHeighestSelectedRect:()I
+      29: istore        4
+      31: iload_1
+      32: iload         4
+      34: if_icmpge     40
+      37: iload         4
+      39: istore_1
+      40: aload_3
+      41: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      46: ifne          15
+      49: iload_1
+      50: iconst_m1
+      51: if_icmpne     55
+      54: return
+      55: aload_0
+      56: getfield      #122                // Field mergedPanels:Ljava/util/List;
+      59: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      64: astore_3
+      65: goto          83
+      68: aload_3
+      69: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      74: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+      77: astore_2
+      78: aload_2
+      79: iload_1
+      80: invokevirtual #743                // Method at/laborg/briss/gui/MergedPanel.setSelCropHeight:(I)V
+      83: aload_3
+      84: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      89: ifne          68
+      92: return
+
+  private void maximizeSizeInAllRects();
+    Code:
+       0: iconst_m1
+       1: istore_1
+       2: iconst_m1
+       3: istore_2
+       4: aload_0
+       5: getfield      #122                // Field mergedPanels:Ljava/util/List;
+       8: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      13: astore        4
+      15: goto          65
+      18: aload         4
+      20: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      25: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+      28: astore_3
+      29: aload_3
+      30: invokevirtual #748                // Method at/laborg/briss/gui/MergedPanel.getLargestRect:()Ljava/awt/Dimension;
+      33: astore        5
+      35: iload_1
+      36: aload         5
+      38: getfield      #752                // Field java/awt/Dimension.width:I
+      41: if_icmpge     50
+      44: aload         5
+      46: getfield      #752                // Field java/awt/Dimension.width:I
+      49: istore_1
+      50: iload_2
+      51: aload         5
+      53: getfield      #755                // Field java/awt/Dimension.height:I
+      56: if_icmpge     65
+      59: aload         5
+      61: getfield      #755                // Field java/awt/Dimension.height:I
+      64: istore_2
+      65: aload         4
+      67: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      72: ifne          18
+      75: iload_1
+      76: iconst_m1
+      77: if_icmpeq     85
+      80: iload_2
+      81: iconst_m1
+      82: if_icmpne     86
+      85: return
+      86: aload_0
+      87: getfield      #122                // Field mergedPanels:Ljava/util/List;
+      90: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      95: astore        4
+      97: goto          117
+     100: aload         4
+     102: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     107: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+     110: astore_3
+     111: aload_3
+     112: iload_1
+     113: iload_2
+     114: invokevirtual #758                // Method at/laborg/briss/gui/MergedPanel.setAllCropSize:(II)V
+     117: aload         4
+     119: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     124: ifne          100
+     127: return
+
+  public void alignSelRects(int, int, int, int);
+    Code:
+       0: aload_0
+       1: getfield      #122                // Field mergedPanels:Ljava/util/List;
+       4: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       9: astore        6
+      11: goto          41
+      14: aload         6
+      16: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      21: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+      24: astore        5
+      26: aload         5
+      28: iload_3
+      29: iload         4
+      31: invokevirtual #765                // Method at/laborg/briss/gui/MergedPanel.setSelCropSize:(II)V
+      34: aload         5
+      36: iload_1
+      37: iload_2
+      38: invokevirtual #768                // Method at/laborg/briss/gui/MergedPanel.moveToSelelectedCrops:(II)V
+      41: aload         6
+      43: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      48: ifne          14
+      51: return
+
+  public void moveSelectedRects(int, int);
+    Code:
+       0: aload_0
+       1: getfield      #122                // Field mergedPanels:Ljava/util/List;
+       4: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       9: astore        4
+      11: goto          31
+      14: aload         4
+      16: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      21: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+      24: astore_3
+      25: aload_3
+      26: iload_1
+      27: iload_2
+      28: invokevirtual #776                // Method at/laborg/briss/gui/MergedPanel.moveSelelectedCrops:(II)V
+      31: aload         4
+      33: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      38: ifne          14
+      41: return
+
+  public void setDefinedSizeSelRects();
+    Code:
+       0: ldc_w         #451                // String
+       3: astore_1
+       4: iconst_m1
+       5: istore_2
+       6: iconst_m1
+       7: istore_3
+       8: aload_0
+       9: getfield      #122                // Field mergedPanels:Ljava/util/List;
+      12: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      17: astore        5
+      19: goto          66
+      22: aload         5
+      24: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      29: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+      32: astore        4
+      34: aload         4
+      36: invokevirtual #730                // Method at/laborg/briss/gui/MergedPanel.getWidestSelectedRect:()I
+      39: istore        6
+      41: iload_2
+      42: iload         6
+      44: if_icmpge     50
+      47: iload         6
+      49: istore_2
+      50: aload         4
+      52: invokevirtual #740                // Method at/laborg/briss/gui/MergedPanel.getHeighestSelectedRect:()I
+      55: istore        7
+      57: iload_3
+      58: iload         7
+      60: if_icmpge     66
+      63: iload         7
+      65: istore_3
+      66: aload         5
+      68: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      73: ifne          22
+      76: iload_2
+      77: iflt          143
+      80: iload_3
+      81: iflt          143
+      84: ldc_w         #779                // float 25.4f
+      87: iload_2
+      88: i2f
+      89: fmul
+      90: ldc_w         #780                // float 72.0f
+      93: fdiv
+      94: invokestatic  #781                // Method java/lang/Math.round:(F)I
+      97: istore_2
+      98: ldc_w         #779                // float 25.4f
+     101: iload_3
+     102: i2f
+     103: fmul
+     104: ldc_w         #780                // float 72.0f
+     107: fdiv
+     108: invokestatic  #781                // Method java/lang/Math.round:(F)I
+     111: istore_3
+     112: new           #573                // class java/lang/StringBuilder
+     115: dup
+     116: iload_2
+     117: invokestatic  #787                // Method java/lang/Integer.toString:(I)Ljava/lang/String;
+     120: invokestatic  #792                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+     123: invokespecial #577                // Method java/lang/StringBuilder."<init>":(Ljava/lang/String;)V
+     126: ldc_w         #796                // String
+     129: invokevirtual #581                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     132: iload_3
+     133: invokestatic  #787                // Method java/lang/Integer.toString:(I)Ljava/lang/String;
+     136: invokevirtual #581                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     139: invokevirtual #585                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     142: astore_1
+     143: ldc           #17                 // String Enter size in milimeters (width height)
+     145: aload_1
+     146: invokestatic  #453                // Method javax/swing/JOptionPane.showInputDialog:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/String;
+     149: astore        4
+     151: aload         4
+     153: ifnull        167
+     156: aload         4
+     158: ldc_w         #451                // String
+     161: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     164: ifeq          168
+     167: return
+     168: aload         4
+     170: ldc_w         #796                // String
+     173: iconst_2
+     174: invokevirtual #798                // Method java/lang/String.split:(Ljava/lang/String;I)[Ljava/lang/String;
+     177: astore        5
+     179: aload         5
+     181: arraylength
+     182: iconst_2
+     183: if_icmpeq     187
+     186: return
+     187: iconst_m1
+     188: istore        6
+     190: iconst_m1
+     191: istore        7
+     193: aload         5
+     195: iconst_0
+     196: aaload
+     197: invokestatic  #802                // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+     200: istore        6
+     202: aload         5
+     204: iconst_1
+     205: aaload
+     206: invokestatic  #802                // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+     209: istore        7
+     211: goto          217
+     214: astore        8
+     216: return
+     217: iload         6
+     219: i2f
+     220: ldc_w         #780                // float 72.0f
+     223: fmul
+     224: ldc_w         #779                // float 25.4f
+     227: fdiv
+     228: invokestatic  #781                // Method java/lang/Math.round:(F)I
+     231: istore        6
+     233: iload         7
+     235: i2f
+     236: ldc_w         #780                // float 72.0f
+     239: fmul
+     240: ldc_w         #779                // float 25.4f
+     243: fdiv
+     244: invokestatic  #781                // Method java/lang/Math.round:(F)I
+     247: istore        7
+     249: aload_0
+     250: getfield      #122                // Field mergedPanels:Ljava/util/List;
+     253: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     258: astore        9
+     260: goto          289
+     263: aload         9
+     265: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     270: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+     273: astore        8
+     275: aload         8
+     277: iload         6
+     279: invokevirtual #734                // Method at/laborg/briss/gui/MergedPanel.setSelCropWidth:(I)V
+     282: aload         8
+     284: iload         7
+     286: invokevirtual #743                // Method at/laborg/briss/gui/MergedPanel.setSelCropHeight:(I)V
+     289: aload         9
+     291: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     296: ifne          263
+     299: return
+    Exception table:
+       from    to  target type
+         193   211   214   Class java/lang/NumberFormatException
+
+  public void setPositionSelRects();
+    Code:
+       0: ldc_w         #451                // String
+       3: astore_1
+       4: ldc_w         #811                // int 2147483647
+       7: istore_2
+       8: ldc_w         #811                // int 2147483647
+      11: istore_3
+      12: aload_0
+      13: getfield      #122                // Field mergedPanels:Ljava/util/List;
+      16: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      21: astore        5
+      23: goto          70
+      26: aload         5
+      28: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      33: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+      36: astore        4
+      38: aload         4
+      40: invokevirtual #812                // Method at/laborg/briss/gui/MergedPanel.getLeftmostSelectedRect:()I
+      43: istore        6
+      45: iload_2
+      46: iload         6
+      48: if_icmple     54
+      51: iload         6
+      53: istore_2
+      54: aload         4
+      56: invokevirtual #815                // Method at/laborg/briss/gui/MergedPanel.getUpmostSelectedRect:()I
+      59: istore        7
+      61: iload_3
+      62: iload         7
+      64: if_icmple     70
+      67: iload         7
+      69: istore_3
+      70: aload         5
+      72: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      77: ifne          26
+      80: iload_2
+      81: ldc_w         #811                // int 2147483647
+      84: if_icmpge     153
+      87: iload_3
+      88: ldc_w         #811                // int 2147483647
+      91: if_icmpge     153
+      94: ldc_w         #779                // float 25.4f
+      97: iload_2
+      98: i2f
+      99: fmul
+     100: ldc_w         #780                // float 72.0f
+     103: fdiv
+     104: invokestatic  #781                // Method java/lang/Math.round:(F)I
+     107: istore_2
+     108: ldc_w         #779                // float 25.4f
+     111: iload_3
+     112: i2f
+     113: fmul
+     114: ldc_w         #780                // float 72.0f
+     117: fdiv
+     118: invokestatic  #781                // Method java/lang/Math.round:(F)I
+     121: istore_3
+     122: new           #573                // class java/lang/StringBuilder
+     125: dup
+     126: iload_2
+     127: invokestatic  #787                // Method java/lang/Integer.toString:(I)Ljava/lang/String;
+     130: invokestatic  #792                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+     133: invokespecial #577                // Method java/lang/StringBuilder."<init>":(Ljava/lang/String;)V
+     136: ldc_w         #796                // String
+     139: invokevirtual #581                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     142: iload_3
+     143: invokestatic  #787                // Method java/lang/Integer.toString:(I)Ljava/lang/String;
+     146: invokevirtual #581                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     149: invokevirtual #585                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     152: astore_1
+     153: ldc           #20                 // String Enter position in milimeters (x y)
+     155: aload_1
+     156: invokestatic  #453                // Method javax/swing/JOptionPane.showInputDialog:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/String;
+     159: astore        4
+     161: aload         4
+     163: ifnull        177
+     166: aload         4
+     168: ldc_w         #451                // String
+     171: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     174: ifeq          178
+     177: return
+     178: aload         4
+     180: ldc_w         #796                // String
+     183: iconst_2
+     184: invokevirtual #798                // Method java/lang/String.split:(Ljava/lang/String;I)[Ljava/lang/String;
+     187: astore        5
+     189: aload         5
+     191: arraylength
+     192: iconst_2
+     193: if_icmpeq     197
+     196: return
+     197: iconst_m1
+     198: istore        6
+     200: iconst_m1
+     201: istore        7
+     203: aload         5
+     205: iconst_0
+     206: aaload
+     207: invokestatic  #802                // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+     210: istore        6
+     212: aload         5
+     214: iconst_1
+     215: aaload
+     216: invokestatic  #802                // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+     219: istore        7
+     221: goto          227
+     224: astore        8
+     226: return
+     227: iload         6
+     229: i2f
+     230: ldc_w         #780                // float 72.0f
+     233: fmul
+     234: ldc_w         #779                // float 25.4f
+     237: fdiv
+     238: invokestatic  #781                // Method java/lang/Math.round:(F)I
+     241: istore        6
+     243: iload         7
+     245: i2f
+     246: ldc_w         #780                // float 72.0f
+     249: fmul
+     250: ldc_w         #779                // float 25.4f
+     253: fdiv
+     254: invokestatic  #781                // Method java/lang/Math.round:(F)I
+     257: istore        7
+     259: aload_0
+     260: getfield      #122                // Field mergedPanels:Ljava/util/List;
+     263: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     268: astore        9
+     270: goto          294
+     273: aload         9
+     275: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     280: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+     283: astore        8
+     285: aload         8
+     287: iload         6
+     289: iload         7
+     291: invokevirtual #768                // Method at/laborg/briss/gui/MergedPanel.moveToSelelectedCrops:(II)V
+     294: aload         9
+     296: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     301: ifne          273
+     304: return
+    Exception table:
+       from    to  target type
+         203   221   224   Class java/lang/NumberFormatException
+
+  public void resizeSelRects(int, int);
+    Code:
+       0: aload_0
+       1: getfield      #122                // Field mergedPanels:Ljava/util/List;
+       4: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       9: astore        4
+      11: goto          31
+      14: aload         4
+      16: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      21: checkcast     #643                // class at/laborg/briss/gui/MergedPanel
+      24: astore_3
+      25: aload_3
+      26: iload_1
+      27: iload_2
+      28: invokevirtual #823                // Method at/laborg/briss/gui/MergedPanel.resizeSelCrop:(II)V
+      31: aload         4
+      33: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      38: ifne          14
+      41: return
+
+  public void propertyChange(java.beans.PropertyChangeEvent);
+    Code:
+       0: ldc_w         #828                // String progress
+       3: aload_1
+       4: invokevirtual #830                // Method java/beans/PropertyChangeEvent.getPropertyName:()Ljava/lang/String;
+       7: invokevirtual #457                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      10: ifeq          30
+      13: aload_0
+      14: getfield      #326                // Field progressBar:Ljavax/swing/JProgressBar;
+      17: aload_1
+      18: invokevirtual #835                // Method java/beans/PropertyChangeEvent.getNewValue:()Ljava/lang/Object;
+      21: checkcast     #788                // class java/lang/Integer
+      24: invokevirtual #838                // Method java/lang/Integer.intValue:()I
+      27: invokevirtual #689                // Method javax/swing/JProgressBar.setValue:(I)V
+      30: return
+
+  private void setStateAfterClusteringFinished(at.laborg.briss.model.ClusterDefinition, at.laborg.briss.model.PageExcludes, java.io.File);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #845                // Method updateWorkingSet:(Lat/laborg/briss/model/ClusterDefinition;Lat/laborg/briss/model/PageExcludes;Ljava/io/File;)V
+       7: aload_0
+       8: getfield      #295                // Field previewPanel:Ljavax/swing/JPanel;
+      11: invokevirtual #706                // Method javax/swing/JPanel.removeAll:()V
+      14: aload_0
+      15: new           #848                // class java/util/ArrayList
+      18: dup
+      19: invokespecial #850                // Method java/util/ArrayList."<init>":()V
+      22: putfield      #122                // Field mergedPanels:Ljava/util/List;
+      25: aload_0
+      26: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+      29: invokevirtual #666                // Method at/laborg/briss/model/WorkingSet.getClusterDefinition:()Lat/laborg/briss/model/ClusterDefinition;
+      32: invokevirtual #851                // Method at/laborg/briss/model/ClusterDefinition.getClusterList:()Ljava/util/List;
+      35: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      40: astore        5
+      42: goto          91
+      45: aload         5
+      47: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      52: checkcast     #857                // class at/laborg/briss/model/PageCluster
+      55: astore        4
+      57: new           #643                // class at/laborg/briss/gui/MergedPanel
+      60: dup
+      61: aload         4
+      63: aload_0
+      64: invokespecial #859                // Method at/laborg/briss/gui/MergedPanel."<init>":(Lat/laborg/briss/model/PageCluster;Lat/laborg/briss/BrissGUI;)V
+      67: astore        6
+      69: aload_0
+      70: getfield      #295                // Field previewPanel:Ljavax/swing/JPanel;
+      73: aload         6
+      75: invokevirtual #862                // Method javax/swing/JPanel.add:(Ljava/awt/Component;)Ljava/awt/Component;
+      78: pop
+      79: aload_0
+      80: getfield      #122                // Field mergedPanels:Ljava/util/List;
+      83: aload         6
+      85: invokeinterface #865,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      90: pop
+      91: aload         5
+      93: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      98: ifne          45
+     101: aload_0
+     102: getfield      #326                // Field progressBar:Ljavax/swing/JProgressBar;
+     105: ldc_w         #867                // String Clustering and Rendering finished
+     108: invokevirtual #692                // Method javax/swing/JProgressBar.setString:(Ljava/lang/String;)V
+     111: aload_0
+     112: getfield      #262                // Field cropButton:Ljavax/swing/JMenuItem;
+     115: iconst_1
+     116: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     119: aload_0
+     120: getfield      #266                // Field maximizeWidthButton:Ljavax/swing/JMenuItem;
+     123: iconst_1
+     124: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     127: aload_0
+     128: getfield      #268                // Field maximizeHeightButton:Ljavax/swing/JMenuItem;
+     131: iconst_1
+     132: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     135: aload_0
+     136: getfield      #258                // Field excludePagesButton:Ljavax/swing/JMenuItem;
+     139: iconst_1
+     140: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     143: aload_0
+     144: getfield      #264                // Field showPreviewButton:Ljavax/swing/JMenuItem;
+     147: iconst_1
+     148: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     151: aload_0
+     152: getfield      #270                // Field maximizeSizeButton:Ljavax/swing/JMenuItem;
+     155: iconst_1
+     156: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     159: aload_0
+     160: getfield      #272                // Field setSizeButton:Ljavax/swing/JMenuItem;
+     163: iconst_1
+     164: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     167: aload_0
+     168: getfield      #274                // Field setPositionButton:Ljavax/swing/JMenuItem;
+     171: iconst_1
+     172: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     175: aload_0
+     176: getfield      #276                // Field moveLeftButton:Ljavax/swing/JMenuItem;
+     179: iconst_1
+     180: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     183: aload_0
+     184: getfield      #278                // Field moveRightButton:Ljavax/swing/JMenuItem;
+     187: iconst_1
+     188: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     191: aload_0
+     192: getfield      #280                // Field moveUpButton:Ljavax/swing/JMenuItem;
+     195: iconst_1
+     196: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     199: aload_0
+     200: getfield      #282                // Field moveDownButton:Ljavax/swing/JMenuItem;
+     203: iconst_1
+     204: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     207: aload_0
+     208: getfield      #284                // Field selectAllButton:Ljavax/swing/JMenuItem;
+     211: iconst_1
+     212: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     215: aload_0
+     216: getfield      #286                // Field selectNoneButton:Ljavax/swing/JMenuItem;
+     219: iconst_1
+     220: invokevirtual #235                // Method javax/swing/JMenuItem.setEnabled:(Z)V
+     223: aload_0
+     224: ldc_w         #451                // String
+     227: invokespecial #608                // Method setIdleState:(Ljava/lang/String;)V
+     230: aload_0
+     231: invokevirtual #360                // Method pack:()V
+     234: aload_0
+     235: bipush        6
+     237: invokevirtual #869                // Method setExtendedState:(I)V
+     240: aload_0
+     241: getfield      #295                // Field previewPanel:Ljavax/swing/JPanel;
+     244: invokevirtual #872                // Method javax/swing/JPanel.repaint:()V
+     247: aload_0
+     248: invokevirtual #875                // Method repaint:()V
+     251: return
+
+  private void updateWorkingSet(at.laborg.briss.model.ClusterDefinition, at.laborg.briss.model.PageExcludes, java.io.File);
+    Code:
+       0: aload_0
+       1: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+       4: ifnonnull     22
+       7: aload_0
+       8: new           #563                // class at/laborg/briss/model/WorkingSet
+      11: dup
+      12: aload_3
+      13: invokespecial #883                // Method at/laborg/briss/model/WorkingSet."<init>":(Ljava/io/File;)V
+      16: putfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+      19: goto          48
+      22: aload_0
+      23: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+      26: invokevirtual #562                // Method at/laborg/briss/model/WorkingSet.getSourceFile:()Ljava/io/File;
+      29: aload_3
+      30: invokevirtual #884                // Method java/io/File.equals:(Ljava/lang/Object;)Z
+      33: ifeq          48
+      36: aload_0
+      37: aload_0
+      38: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+      41: invokevirtual #666                // Method at/laborg/briss/model/WorkingSet.getClusterDefinition:()Lat/laborg/briss/model/ClusterDefinition;
+      44: aload_1
+      45: invokespecial #885                // Method copyCropsToClusters:(Lat/laborg/briss/model/ClusterDefinition;Lat/laborg/briss/model/ClusterDefinition;)V
+      48: aload_0
+      49: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+      52: aload_3
+      53: invokevirtual #889                // Method at/laborg/briss/model/WorkingSet.setSourceFile:(Ljava/io/File;)V
+      56: aload_0
+      57: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+      60: aload_1
+      61: invokevirtual #892                // Method at/laborg/briss/model/WorkingSet.setClusters:(Lat/laborg/briss/model/ClusterDefinition;)V
+      64: aload_0
+      65: getfield      #560                // Field workingSet:Lat/laborg/briss/model/WorkingSet;
+      68: aload_2
+      69: invokevirtual #896                // Method at/laborg/briss/model/WorkingSet.setPageExcludes:(Lat/laborg/briss/model/PageExcludes;)V
+      72: return
+
+  private void copyCropsToClusters(at.laborg.briss.model.ClusterDefinition, at.laborg.briss.model.ClusterDefinition);
+    Code:
+       0: aload_2
+       1: invokevirtual #851                // Method at/laborg/briss/model/ClusterDefinition.getClusterList:()Ljava/util/List;
+       4: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       9: astore        4
+      11: goto          115
+      14: aload         4
+      16: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      21: checkcast     #857                // class at/laborg/briss/model/PageCluster
+      24: astore_3
+      25: aload_3
+      26: invokevirtual #900                // Method at/laborg/briss/model/PageCluster.getAllPages:()Ljava/util/List;
+      29: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      34: astore        6
+      36: goto          105
+      39: aload         6
+      41: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      46: checkcast     #788                // class java/lang/Integer
+      49: astore        5
+      51: aload_1
+      52: aload         5
+      54: invokevirtual #838                // Method java/lang/Integer.intValue:()I
+      57: invokevirtual #903                // Method at/laborg/briss/model/ClusterDefinition.getSingleCluster:(I)Lat/laborg/briss/model/PageCluster;
+      60: astore        7
+      62: aload         7
+      64: invokevirtual #907                // Method at/laborg/briss/model/PageCluster.getRatiosList:()Ljava/util/List;
+      67: invokeinterface #631,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      72: astore        9
+      74: goto          95
+      77: aload         9
+      79: invokeinterface #637,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      84: checkcast     #910                // class "[Ljava/lang/Float;"
+      87: astore        8
+      89: aload_3
+      90: aload         8
+      92: invokevirtual #912                // Method at/laborg/briss/model/PageCluster.addRatios:([Ljava/lang/Float;)V
+      95: aload         9
+      97: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     102: ifne          77
+     105: aload         6
+     107: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     112: ifne          39
+     115: aload         4
+     117: invokeinterface #648,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     122: ifne          14
+     125: return
+
+  public void componentResized(java.awt.event.ComponentEvent);
+    Code:
+       0: aload_0
+       1: getfield      #295                // Field previewPanel:Ljavax/swing/JPanel;
+       4: invokevirtual #924                // Method javax/swing/JPanel.revalidate:()V
+       7: aload_0
+       8: getfield      #295                // Field previewPanel:Ljavax/swing/JPanel;
+      11: invokevirtual #927                // Method javax/swing/JPanel.getComponents:()[Ljava/awt/Component;
+      14: dup
+      15: astore        5
+      17: arraylength
+      18: istore        4
+      20: iconst_0
+      21: istore_3
+      22: goto          37
+      25: aload         5
+      27: iload_3
+      28: aaload
+      29: astore_2
+      30: aload_2
+      31: invokevirtual #931                // Method java/awt/Component.repaint:()V
+      34: iinc          3, 1
+      37: iload_3
+      38: iload         4
+      40: if_icmplt     25
+      43: return
+
+  public void componentMoved(java.awt.event.ComponentEvent);
+    Code:
+       0: return
+
+  public void componentShown(java.awt.event.ComponentEvent);
+    Code:
+       0: return
+
+  public void componentHidden(java.awt.event.ComponentEvent);
+    Code:
+       0: return
+
+  static void access$0(at.laborg.briss.BrissGUI, at.laborg.briss.model.ClusterDefinition, at.laborg.briss.model.PageExcludes, java.io.File);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #942                // Method setStateAfterClusteringFinished:(Lat/laborg/briss/model/ClusterDefinition;Lat/laborg/briss/model/PageExcludes;Ljava/io/File;)V
+       7: return
+}

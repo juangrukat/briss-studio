@@ -1,0 +1,11 @@
+*
+!Dockerfile
+!requirements.lock
+!server
+!server/**
+!web
+!web/**
+web/node_modules
+web/dist
+server/__pycache__
+web/*.tsbuildinfo

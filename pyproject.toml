@@ -1,0 +1,22 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+[tool.mypy]
+python_version = "3.13"
+strict = true
+ignore_missing_imports = true
+[tool.ruff]
+line-length = 88
+[tool.coverage.run]
+source = ["server"]
+
+# PyMuPDF ships incomplete annotations (including missing Document.__iter__).
+# Isolate that native-library boundary; keep our models and application strict.
+[[tool.mypy.overrides]]
+module = ["pymupdf", "pymupdf.*"]
+follow_imports = "skip"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B", "SIM"]
+[tool.ruff.lint.per-file-ignores]
+"server/app.py" = ["B008"]

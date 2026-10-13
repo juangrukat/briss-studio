@@ -1,0 +1,26 @@
+services:
+  briss:
+    build: .
+    ports:
+      - "${BRISS_BIND_ADDRESS:-127.0.0.1}:${BRISS_PORT:-8000}:8000"
+    environment:
+      BRISS_ACCESS_TOKEN: ${BRISS_ACCESS_TOKEN:-}
+      BRISS_MAX_UPLOAD_MB: ${BRISS_MAX_UPLOAD_MB:-100}
+      BRISS_MAX_PAGES: ${BRISS_MAX_PAGES:-2000}
+      BRISS_MAX_SESSIONS: ${BRISS_MAX_SESSIONS:-100}
+      BRISS_SESSION_TTL_HOURS: ${BRISS_SESSION_TTL_HOURS:-24}
+    volumes:
+      - briss-data:/data
+    restart: unless-stopped
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp:size=256m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 2g
+    cpus: 2
+volumes:
+  briss-data:
